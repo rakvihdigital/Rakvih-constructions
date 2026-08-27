@@ -65,7 +65,7 @@ export default function Home() {
                 <span className="title-stroke">BEGINNING</span>
               </h2>
               <p className="desc">
-                A pristine landscape awaiting transformation into an architectural
+                A pristine landscape awaiting transformation into an architecturals
                 masterpiece.
               </p>
               <a href="#section-4" className="cta-pill">
