@@ -1,6 +1,7 @@
 import Header from '@/components/Header';
 import FadeIn from '@/components/FadeIn';
 import Footer from '@/components/Footer';
+import Image from 'next/image';
 import { Search, Map, Calculator, Users, HardHat, Cog, CheckCircle, FileCheck, LifeBuoy } from 'lucide-react';
 
 export default function ProcessPage() {
@@ -21,50 +22,99 @@ export default function ProcessPage() {
       <Header />
       <main className="flex-grow pt-16 animate-fade-in-up">
         {/* Hero Section */}
-        <section className="relative pt-16 pb-20 bg-dark-card border-b border-white/5">
-        <div className="container mx-auto px-6 text-center max-w-3xl">
-            <p className="text-gold font-bold text-xs tracking-[0.2em] uppercase mb-4">Methodology</p>
-            <h1 className="text-5xl md:text-6xl font-light mb-6">
-              A Structured Path <br/> <span className="font-bold">to Excellence</span>
-            </h1>
-            <p className="text-gray-400 text-lg font-light leading-relaxed">
-              A clear, predictable process reduces uncertainty. We follow a rigorous 9-step methodology to ensure every project is delivered flawlessly.
-            </p>
+        <section className="relative pt-24 pb-12 lg:pt-36 lg:pb-16 overflow-hidden border-b border-white/5">
+          <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 bg-dark-bg/80 z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent z-10" />
+            <Image
+              src="https://images.unsplash.com/photo-1508450859948-4e04fabaa4ea?q=80&w=2000&auto=format&fit=crop"
+              alt="Process Methodology"
+              fill
+              className="object-cover object-center grayscale opacity-50"
+            />
           </div>
-      </section>
-
-        {/* Process Timeline */}
-        <section className="py-16 md:py-20 relative overflow-hidden">
-          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/10 hidden lg:block" />
-          <div className="container mx-auto px-6 relative z-10">
-            <div className="space-y-16 lg:space-y-0">
-              {steps.map((step, idx) => (
-                <div key={idx} className={`flex flex-col lg:flex-row items-center justify-center w-full ${idx % 2 !== 0 ? 'lg:flex-row-reverse' : ''} lg:min-h-[250px] relative`}>
-                  
-                  {/* Center Node */}
-                  <div className="absolute left-1/2 -translate-x-1/2 hidden lg:flex w-16 h-16 bg-dark-bg border-4 border-gold rounded-full items-center justify-center z-20 shadow-[0_0_30px_rgba(212,175,55,0.2)]">
-                    <step.icon className="w-6 h-6 text-white" />
-                  </div>
-
-                  {/* Content Box */}
-                  <div className={`w-full lg:w-1/2 flex ${idx % 2 !== 0 ? 'lg:justify-start lg:pl-24' : 'lg:justify-end lg:pr-24'}`}>
-                    <div className="bg-white/5 border border-white/10 p-10 hover:border-gold transition-colors max-w-lg w-full relative group">
-                      <div className="absolute -top-6 -right-4 text-7xl font-black text-white/5 group-hover:text-gold/10 transition-colors pointer-events-none">
-                        {step.id}
-                      </div>
-                      <div className="lg:hidden w-12 h-12 bg-gold/10 text-gold rounded-full flex items-center justify-center mb-6">
-                        <step.icon className="w-6 h-6" />
-                      </div>
-                      <h3 className="text-2xl font-bold mb-4">{step.title}</h3>
-                      <p className="text-gray-400 leading-relaxed">{step.desc}</p>
-                    </div>
-                  </div>
-
-                </div>
-              ))}
+          <div className="w-full max-w-[1920px] mx-auto px-6 md:px-12 lg:px-16 relative z-20 text-center md:text-left">
+            <div className="flex flex-col md:flex-row justify-between items-end gap-8">
+              <div>
+                <p className="text-gold font-bold text-xs tracking-[0.2em] uppercase mb-4">Methodology</p>
+                <h1 className="text-5xl md:text-7xl font-light mb-6 md:mb-0">
+                  A Structured Path <br /> <span className="font-bold">to Excellence</span>
+                </h1>
+              </div>
+              <p className="text-gray-300 text-lg max-w-md font-light leading-relaxed mx-auto md:mx-0 text-center md:text-right">
+                A clear, predictable process reduces uncertainty. We follow a rigorous 9-step methodology to ensure every project is delivered flawlessly.
+              </p>
             </div>
           </div>
-      </section>
+        </section>
+
+        {/* Chessboard Process Layout */}
+        <div>
+          {steps.map((step, idx) => {
+            const isEven = idx % 2 === 0;
+            // Chessboard: Row 0 = [Dark+Image | Light+Text], Row 1 = [Light+Text | Dark+Image], etc.
+            const images = [
+              'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1000&auto=format&fit=crop',
+              'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop',
+              'https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=1000&auto=format&fit=crop',
+              'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop',
+              'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1000&auto=format&fit=crop',
+              'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1000&auto=format&fit=crop',
+              'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=1000&auto=format&fit=crop',
+              'https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1000&auto=format&fit=crop',
+              'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop',
+            ];
+
+            const imageBlock = (
+              <div className={`w-full lg:w-1/2 h-[350px] md:h-[450px] relative overflow-hidden ${isEven ? 'bg-dark-bg' : 'bg-gray-50'}`}>
+                <Image
+                  src={images[idx]}
+                  alt={step.title}
+                  fill
+                  className="object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+                />
+                <div className={`absolute inset-0 ${isEven ? 'bg-dark-bg/40' : 'bg-white/20'}`} />
+                {/* Floating number */}
+                <div className={`absolute bottom-4 right-6 text-[140px] font-black leading-none pointer-events-none ${isEven ? 'text-white/10' : 'text-dark-bg/10'}`}>
+                  {step.id}
+                </div>
+                {/* Icon */}
+                <div className={`absolute top-8 left-8 w-16 h-16 rounded-full flex items-center justify-center border ${isEven ? 'bg-dark-bg/60 border-gold/30 backdrop-blur-sm' : 'bg-white/60 border-gold/30 backdrop-blur-sm'}`}>
+                  <step.icon className="w-7 h-7 text-gold" />
+                </div>
+              </div>
+            );
+
+            const textBlock = (
+              <div className={`w-full lg:w-1/2 h-[350px] md:h-[450px] flex items-center ${isEven ? 'bg-gray-50' : 'bg-dark-bg'}`}>
+                <FadeIn direction={isEven ? 'left' : 'right'} className="w-full">
+                  <div className="px-10 md:px-16 lg:px-20 py-10">
+                    <div className="flex items-center gap-4 mb-6">
+                      <span className={`w-12 h-[1px] block ${isEven ? 'bg-dark-bg' : 'bg-gold'}`} />
+                      <span className={`font-bold tracking-[0.2em] text-sm uppercase ${isEven ? 'text-dark-bg' : 'text-gold'}`}>Phase {idx + 1}</span>
+                    </div>
+                    <h2 className={`text-4xl md:text-5xl font-light mb-6 leading-[1.1] ${isEven ? 'text-dark-bg' : 'text-white'}`}>
+                      {step.title}
+                    </h2>
+                    <p className={`text-lg md:text-xl leading-relaxed font-light max-w-md ${isEven ? 'text-gray-600' : 'text-gray-400'}`}>
+                      {step.desc}
+                    </p>
+                  </div>
+                </FadeIn>
+              </div>
+            );
+
+            return (
+              <div key={idx} className="flex flex-col lg:flex-row w-full">
+                {isEven ? (
+                  <>{imageBlock}{textBlock}</>
+                ) : (
+                  <>{textBlock}{imageBlock}</>
+                )}
+              </div>
+            );
+          })}
+        </div>
       </main>
       <Footer />
     </div>

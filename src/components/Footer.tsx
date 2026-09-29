@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer className="bg-dark-bg pt-12 pb-6 border-t border-white/10 text-white font-sans mt-auto">
       <div className="w-full px-4 md:px-8 lg:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-12">
           <div className="md:col-span-1">
             <Link href="/" className="mb-6 block">
               <Image src="/logo-transparent.png" alt="Rakvih Logo" width={180} height={60} className="object-contain" />
@@ -44,6 +44,17 @@ export default function Footer() {
               <li><Link href="/services" className="hover:text-gold transition-colors">Infrastructure Projects</Link></li>
               <li><Link href="/services" className="hover:text-gold transition-colors">Interior & Fit-Out</Link></li>
               <li><Link href="/services" className="hover:text-gold transition-colors">Project Management</Link></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 className="text-white font-bold mb-6 tracking-wider">Support</h4>
+            <ul className="space-y-3 text-sm text-gray-400">
+              <li><Link href="/contact" className="hover:text-gold transition-colors">Contact Us</Link></li>
+              <li><Link href="/terms-of-service" className="hover:text-gold transition-colors">Terms & Conditions</Link></li>
+              <li><Link href="/privacy-policy" className="hover:text-gold transition-colors">Privacy Policy</Link></li>
+              <li><Link href="#" className="hover:text-gold transition-colors">FAQ</Link></li>
+              <li><Link href="#" className="hover:text-gold transition-colors">Sitemap</Link></li>
             </ul>
           </div>
           

@@ -49,14 +49,24 @@ export default function ServicesPage() {
       <Header />
       <main className="flex-grow pt-16 animate-fade-in-up">
         {/* Hero Section */}
-        <section className="relative pt-12 pb-16 lg:pt-20 lg:pb-24 overflow-hidden bg-dark-card border-b border-white/5">
-          <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16 relative z-20">
+        <section className="relative pt-24 pb-12 lg:pt-36 lg:pb-16 overflow-hidden border-b border-white/5">
+          <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 bg-dark-bg/80 z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent z-10" />
+            <Image 
+              src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2000&auto=format&fit=crop" 
+              alt="Services Overview" 
+              fill 
+              className="object-cover object-center grayscale opacity-50"
+            />
+          </div>
+          <div className="w-full max-w-[1920px] mx-auto px-6 md:px-12 lg:px-16 relative z-20 text-center md:text-left">
             <p className="text-gold font-bold text-xs tracking-[0.2em] uppercase mb-4">Expertise & Scope</p>
             <h1 className="text-5xl md:text-7xl font-light mb-6">
               Comprehensive <br />
               <span className="font-bold">Capabilities</span>
             </h1>
-            <p className="text-gray-400 text-lg md:text-xl max-w-2xl font-light leading-relaxed">
+            <p className="text-gray-300 text-lg md:text-xl max-w-2xl font-light leading-relaxed mx-auto md:mx-0">
               We leverage advanced engineering, modern technology, and masterful craftsmanship to deliver world-class infrastructure across diverse sectors.
             </p>
           </div>
@@ -67,11 +77,11 @@ export default function ServicesPage() {
           const isLight = idx % 2 !== 0; // Alternate themes
           return (
             <section key={idx} className={`py-12 md:py-16 overflow-hidden ${isLight ? 'bg-gray-50 text-dark-bg' : 'bg-dark-bg text-white'}`}>
-              <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16">
+              <div className="w-full max-w-none px-4 md:px-8 lg:px-12">
                 <div className={`flex flex-col lg:flex-row items-center ${isLight ? 'lg:flex-row-reverse' : ''}`}>
                   
                   {/* Image Section */}
-                  <FadeIn direction={isLight ? 'left' : 'right'} className="w-full lg:w-3/5 z-10">
+                  <FadeIn direction={isLight ? 'left' : 'right'} className="w-full lg:w-[60%] z-10">
                     <div className="relative h-[400px] md:h-[500px] w-full overflow-hidden shadow-2xl group cursor-pointer rounded-sm">
                       <Image 
                         src={srv.img} 
@@ -86,7 +96,7 @@ export default function ServicesPage() {
                   </FadeIn>
                   
                   {/* Text Card Section (Overlapping) */}
-                  <FadeIn direction={isLight ? 'right' : 'left'} delay={200} className={`w-full lg:w-2/5 z-20 ${isLight ? 'lg:mr-[-8%]' : 'lg:ml-[-8%]'} mt-[-10%] lg:mt-0`}>
+                  <FadeIn direction={isLight ? 'right' : 'left'} delay={200} className={`w-full lg:w-[45%] z-20 ${isLight ? 'lg:mr-[-5%]' : 'lg:ml-[-5%]'} mt-[-10%] lg:mt-0`}>
                     <div className={`${isLight ? 'bg-white border-gray-100' : 'bg-dark-card border-white/10'} border p-10 md:p-14 shadow-2xl relative group overflow-hidden`}>
                       {/* Glow effects */}
                       <div className="absolute top-0 left-0 w-0 h-1 bg-gradient-to-r from-transparent via-gold to-transparent group-hover:w-full transition-all duration-1000 ease-out" />
