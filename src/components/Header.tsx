@@ -26,14 +26,14 @@ export default function Header() {
 
   return (
     <>
-      <header className="fixed top-0 w-full z-40 bg-white/70 backdrop-blur-xl border-b border-gray-200/50 shadow-sm transition-all">
+      <header className="fixed top-0 w-full z-40 bg-dark-bg border-b border-white/10 shadow-sm transition-all">
         <div className="w-full px-2 md:px-8 lg:px-12 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center">
             <Image src="/logo-transparent.png" alt="Rakvih Logo" width={160} height={50} className="object-contain" priority />
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium text-gray-700">
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium text-gray-300">
             <Link href="/" className="hover:text-gold transition-colors">Home</Link>
             <Link href="/about" className="hover:text-gold transition-colors">About</Link>
             <Link href="/services" className="hover:text-gold transition-colors">Services</Link>
@@ -45,12 +45,12 @@ export default function Header() {
 
           <div className="hidden md:flex items-center gap-6">
             <button
-              className="text-gray-700 hover:text-gold transition-colors"
+              className="text-gray-300 hover:text-gold transition-colors"
               onClick={() => setIsSearchOpen(true)}
             >
               <Search className="w-5 h-5" />
             </button>
-            <Link href="/contact" className="hidden lg:flex items-center gap-2 bg-dark-bg text-white px-5 py-2.5 hover:bg-gold hover:text-dark-bg transition-all text-sm font-medium">
+            <Link href="/contact" className="hidden lg:flex items-center gap-2 border border-gold/50 text-gold px-5 py-2.5 hover:bg-gold hover:text-dark-bg transition-all text-sm font-medium">
               START A PROJECT
               <ArrowRight className="w-4 h-4" />
             </Link>
@@ -59,13 +59,13 @@ export default function Header() {
           {/* Mobile Menu Toggle & Mobile Search */}
           <div className="md:hidden flex items-center gap-4">
             <button
-              className="text-gray-700 hover:text-gold transition-colors"
+              className="text-gray-300 hover:text-gold transition-colors"
               onClick={() => setIsSearchOpen(true)}
             >
               <Search className="w-5 h-5" />
             </button>
             <button
-              className="text-gray-700 hover:text-gold transition-colors"
+              className="text-gray-300 hover:text-gold transition-colors"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -75,16 +75,16 @@ export default function Header() {
 
         {/* Mobile Nav */}
         {isMobileMenuOpen && (
-          <div className="md:hidden px-6 py-4 flex flex-col gap-4 max-h-[calc(100vh-64px)] overflow-y-auto animate-fade-in-up">
-            <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-gray-800 hover:text-gold font-medium">Home</Link>
-            <Link href="/about" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-gold font-medium">About</Link>
-            <Link href="/services" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-gold font-medium">Services</Link>
-            <Link href="/projects" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-gold font-medium">Projects</Link>
-            <Link href="/process" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-gold font-medium">Process</Link>
-            <Link href="/insights" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-gold font-medium">Insights</Link>
-            <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-gold font-medium">Contact</Link>
-            <div className="pt-4 mt-2 border-t border-gray-200/50">
-              <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-center gap-2 bg-dark-bg text-white px-5 py-3 rounded hover:bg-gold hover:text-dark-bg transition-all text-sm font-medium w-full shadow-md">
+          <div className="md:hidden px-6 py-4 flex flex-col gap-4 max-h-[calc(100vh-64px)] overflow-y-auto animate-fade-in-up bg-dark-bg">
+            <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-white hover:text-gold font-medium">Home</Link>
+            <Link href="/about" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-gray-300 hover:text-gold font-medium">About</Link>
+            <Link href="/services" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-gray-300 hover:text-gold font-medium">Services</Link>
+            <Link href="/projects" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-gray-300 hover:text-gold font-medium">Projects</Link>
+            <Link href="/process" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-gray-300 hover:text-gold font-medium">Process</Link>
+            <Link href="/insights" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-gray-300 hover:text-gold font-medium">Insights</Link>
+            <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-gray-300 hover:text-gold font-medium">Contact</Link>
+            <div className="pt-4 mt-2 border-t border-white/10">
+              <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-center gap-2 border border-gold/50 text-gold px-5 py-3 rounded hover:bg-gold hover:text-dark-bg transition-all text-sm font-medium w-full">
                 START A PROJECT
                 <ArrowRight className="w-4 h-4" />
               </Link>

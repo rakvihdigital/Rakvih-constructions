@@ -72,68 +72,53 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* Detailed Services Alternating */}
-        {services.map((srv, idx) => {
-          const isLight = idx % 2 !== 0; // Alternate themes
-          return (
-            <section key={idx} className={`py-12 md:py-16 overflow-hidden ${isLight ? 'bg-gray-50 text-dark-bg' : 'bg-dark-bg text-white'}`}>
-              <div className="w-full max-w-none px-4 md:px-8 lg:px-12">
-                <div className={`flex flex-col lg:flex-row items-center ${isLight ? 'lg:flex-row-reverse' : ''}`}>
-                  
-                  {/* Image Section */}
-                  <FadeIn direction={isLight ? 'left' : 'right'} className="w-full lg:w-[60%] z-10">
-                    <div className="relative h-[400px] md:h-[500px] w-full overflow-hidden shadow-2xl group cursor-pointer rounded-sm">
+        {/* Clean Services Grid */}
+        <section className="py-20 bg-dark-bg">
+          <div className="w-full max-w-[1920px] mx-auto px-6 md:px-12 lg:px-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {services.map((srv, idx) => (
+                <FadeIn key={idx} direction="up" delay={idx * 100}>
+                  <div className="bg-dark-card border border-white/5 h-full flex flex-col group overflow-hidden">
+                    {/* Image Header */}
+                    <div className="relative h-[250px] w-full overflow-hidden">
                       <Image 
                         src={srv.img} 
                         alt={srv.title} 
                         fill 
-                        className="object-cover group-hover:scale-110 group-hover:rotate-1 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]"
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
                       />
-                      <div className={`absolute inset-0 transition-colors duration-700 ${isLight ? 'bg-dark-bg/20 group-hover:bg-dark-bg/5' : 'bg-dark-bg/40 group-hover:bg-dark-bg/10'}`} />
-                      {/* Decorative internal border */}
-                      <div className="absolute inset-6 md:inset-10 border border-white/30 scale-95 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-700 pointer-events-none" />
+                      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
                     </div>
-                  </FadeIn>
-                  
-                  {/* Text Card Section (Overlapping) */}
-                  <FadeIn direction={isLight ? 'right' : 'left'} delay={200} className={`w-full lg:w-[45%] z-20 ${isLight ? 'lg:mr-[-5%]' : 'lg:ml-[-5%]'} mt-[-10%] lg:mt-0`}>
-                    <div className={`${isLight ? 'bg-white border-gray-100' : 'bg-dark-card border-white/10'} border p-10 md:p-14 shadow-2xl relative group overflow-hidden`}>
-                      {/* Glow effects */}
-                      <div className="absolute top-0 left-0 w-0 h-1 bg-gradient-to-r from-transparent via-gold to-transparent group-hover:w-full transition-all duration-1000 ease-out" />
-                      <div className="absolute -right-24 -bottom-24 w-64 h-64 bg-gold/10 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-                      
-                      {/* Watermark Number */}
-                      <div className={`${isLight ? 'text-gray-900 opacity-5 group-hover:opacity-10' : 'text-white opacity-[0.02] group-hover:opacity-[0.05]'} font-black text-7xl md:text-8xl absolute right-8 top-8 select-none pointer-events-none group-hover:text-gold transition-colors duration-700`}>0{idx + 1}</div>
-                      
-                      {/* Split Title Highlights */}
-                      <h2 className="text-3xl md:text-4xl font-light mb-6 relative z-10">
+                    
+                    {/* Content Body */}
+                    <div className="p-8 flex flex-col flex-grow">
+                      <h2 className="text-2xl font-light mb-4">
                         {srv.title.split(' ')[0]} <span className="font-bold text-gold">{srv.title.split(' ').slice(1).join(' ')}</span>
                       </h2>
                       
-                      <p className={`${isLight ? 'text-gray-600' : 'text-gray-400'} text-lg leading-relaxed mb-10 font-light relative z-10 transition-colors`}>
+                      <p className="text-gray-400 font-light leading-relaxed mb-8 flex-grow">
                         {srv.desc}
                       </p>
                       
-                      <ul className="grid grid-cols-1 gap-4 mb-10 relative z-10">
+                      <ul className="space-y-3 mb-8">
                         {srv.features.map((feature, fIdx) => (
-                          <li key={fIdx} className="flex items-center gap-4 group/item">
-                            <CheckCircle2 className="w-5 h-5 text-gold/50 group-hover/item:text-gold transition-colors duration-300 shrink-0" />
-                            <span className={`${isLight ? 'text-gray-600 group-hover/item:text-gray-900' : 'text-gray-500 group-hover/item:text-gray-200'} transition-colors duration-300 font-light`}>{feature}</span>
+                          <li key={fIdx} className="flex items-center gap-3">
+                            <CheckCircle2 className="w-4 h-4 text-gold shrink-0" />
+                            <span className="text-gray-300 font-light text-sm">{feature}</span>
                           </li>
                         ))}
                       </ul>
                       
-                      <button className="border border-gold/30 text-gold px-8 py-4 hover:bg-gold hover:text-dark-bg transition-colors font-semibold uppercase tracking-wider text-sm flex items-center gap-3 w-full justify-center group/btn relative z-10">
-                        Discuss a Project <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-2 transition-transform duration-300" />
+                      <button className="border border-white/10 text-white px-6 py-3 hover:bg-gold hover:border-gold hover:text-dark-bg transition-colors font-medium uppercase tracking-wider text-xs flex items-center justify-center gap-2 w-full mt-auto">
+                        Learn More <ArrowRight className="w-3 h-3" />
                       </button>
                     </div>
-                  </FadeIn>
-                  
-                </div>
-              </div>
-            </section>
-          );
-        })}
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </div>

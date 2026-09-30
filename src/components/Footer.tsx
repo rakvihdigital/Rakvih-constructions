@@ -54,7 +54,6 @@ export default function Footer() {
               <li><Link href="/terms-of-service" className="hover:text-gold transition-colors">Terms & Conditions</Link></li>
               <li><Link href="/privacy-policy" className="hover:text-gold transition-colors">Privacy Policy</Link></li>
               <li><Link href="#" className="hover:text-gold transition-colors">FAQ</Link></li>
-              <li><Link href="#" className="hover:text-gold transition-colors">Sitemap</Link></li>
             </ul>
           </div>
           
@@ -77,12 +76,19 @@ export default function Footer() {
           </div>
         </div>
         
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500 text-center md:text-left">
-          <p>© 2026 Rakvih Construction. All rights reserved.</p>
-          <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500 text-center">
+          <div className="md:w-1/3 md:text-left">
+            <p>© 2026 Rakvih Construction. All rights reserved.</p>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-4 md:w-1/3">
             <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <span className="text-white/20">|</span>
             <Link href="/terms-of-service" className="hover:text-white transition-colors">Terms & Conditions</Link>
-            <Link href="#" className="hover:text-white transition-colors">Sitemap</Link>
+          </div>
+          <div className="md:w-1/3 md:text-right">
+            <a href="https://rakvih.in/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+              Powered by <span className="text-gold">Rakvih</span>
+            </a>
           </div>
         </div>
       </div>

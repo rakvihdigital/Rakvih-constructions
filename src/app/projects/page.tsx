@@ -80,68 +80,44 @@ export default function ProjectsPage() {
           </div>
         </section>
 
-        {/* Editorial Portfolio Alternating */}
-        {projects.map((proj, idx) => {
-          const isLight = idx % 2 !== 0; // Alternate themes
-          return (
-            <section key={idx} className={`py-12 md:py-16 overflow-hidden ${isLight ? 'bg-gray-50 text-dark-bg' : 'bg-dark-bg text-white'}`}>
-              <div className="w-full max-w-none px-4 md:px-8 lg:px-12">
-                <div className={`relative flex flex-col lg:flex-row items-center group ${isLight ? 'lg:flex-row-reverse' : ''}`}>
-                  
-                  {/* Image Block */}
-                  <FadeIn direction={isLight ? 'left' : 'right'} className="w-full lg:w-[60%] relative z-10">
-                    <div className="relative h-[500px] lg:h-[700px] w-full overflow-hidden cursor-pointer shadow-2xl rounded-sm">
+        {/* Clean Portfolio Grid */}
+        <section className="py-20 bg-dark-bg">
+          <div className="w-full max-w-[1920px] mx-auto px-6 md:px-12 lg:px-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20">
+              {projects.map((proj, idx) => (
+                <FadeIn key={idx} direction="up" delay={idx * 100}>
+                  <Link href={`/projects/${proj.slug}`} className="group block">
+                    <div className="relative w-full h-[400px] md:h-[550px] overflow-hidden mb-6">
                       <Image 
                         src={proj.img} 
                         alt={proj.title} 
                         fill 
-                        className="object-cover transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105 grayscale group-hover:grayscale-0"
+                        className="object-cover transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105"
                       />
-                      <div className={`absolute inset-0 transition-colors duration-700 ${isLight ? 'bg-dark-bg/20 group-hover:bg-dark-bg/5' : 'bg-dark-bg/40 group-hover:bg-dark-bg/10'}`} />
-                      <div className="absolute top-8 left-8 border border-white/30 w-16 h-16 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-                      <div className="absolute bottom-8 right-8 border border-white/30 w-16 h-16 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                      <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-700" />
                     </div>
-                  </FadeIn>
-
-                  {/* Text Block (Overlapping) */}
-                  <FadeIn direction={isLight ? 'right' : 'left'} delay={200} className={`w-full lg:w-[45%] z-20 ${isLight ? 'lg:mr-[-5%]' : 'lg:ml-[-5%]'} mt-[-10%] lg:mt-0`}>
-                    <div className={`${isLight ? 'bg-white border-gray-100' : 'bg-dark-card border-white/10'} border p-10 md:p-16 shadow-[0_30px_60px_rgba(0,0,0,0.8)] relative overflow-hidden`}>
-                      {/* Decorative background number */}
-                      <div className={`absolute -top-10 -right-10 text-[200px] font-black select-none pointer-events-none transition-colors duration-1000 ${isLight ? 'text-gray-900 opacity-5 group-hover:opacity-10 group-hover:text-gold' : 'text-white/5 group-hover:text-gold/5'}`}>
-                        0{idx + 1}
+                    
+                    <div className="flex flex-col gap-2">
+                      <div className="flex items-center gap-3 mb-1">
+                        <span className="w-8 h-[1px] bg-gold block" />
+                        <span className="text-gold font-bold tracking-widest text-[10px] uppercase">{proj.category}</span>
                       </div>
-                      
-                      <div className="relative z-10">
-                        <div className="flex items-center gap-4 mb-6">
-                          <span className="w-12 h-[1px] bg-gold block" />
-                          <span className="text-gold font-bold tracking-[0.2em] text-xs uppercase">{proj.category}</span>
-                        </div>
-                        
-                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 leading-[1.1]">
-                          {proj.title.split(' ')[0]} <br/>
-                          <span className="font-bold text-gold">{proj.title.split(' ').slice(1).join(' ')}</span>
-                        </h2>
-                        
-                        <div className={`mb-10 font-light flex flex-col gap-2 ${isLight ? 'text-gray-600' : 'text-gray-400'}`}>
-                          <p className={`${isLight ? 'text-gray-900 font-medium' : 'text-white'}`}>{proj.location}</p>
-                          <p>{proj.status}</p>
-                        </div>
-                        
-                        <Link href={`/projects/${proj.slug}`} className={`inline-flex group/btn items-center gap-4 uppercase tracking-widest text-sm font-semibold hover:text-gold transition-colors ${isLight ? 'text-dark-bg' : 'text-white'}`}>
-                          Explore Project 
-                          <div className={`w-10 h-10 rounded-full border flex items-center justify-center group-hover/btn:border-gold group-hover/btn:bg-gold/10 transition-all ${isLight ? 'border-dark-bg/20' : 'border-white/20'}`}>
-                            <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                          </div>
-                        </Link>
+                      <h2 className="text-3xl font-light text-white group-hover:text-gold transition-colors duration-300">
+                        {proj.title}
+                      </h2>
+                      <div className="flex items-center justify-between mt-2">
+                        <p className="text-gray-400 font-light text-sm">{proj.location} • {proj.status}</p>
+                        <span className="flex items-center gap-2 text-sm text-white group-hover:text-gold transition-colors font-medium uppercase tracking-wider">
+                          Explore <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+                        </span>
                       </div>
                     </div>
-                  </FadeIn>
-
-                </div>
-              </div>
-            </section>
-          );
-        })}
+                  </Link>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </div>
