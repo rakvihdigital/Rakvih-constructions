@@ -159,7 +159,7 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
         </section>
 
         {/* OVERVIEW + QUOTE */}
-        <section className="py-16 md:py-24">
+        <section className="pt-2 md:pt-4 pb-10 md:pb-16">
           <div className="container mx-auto px-6 grid lg:grid-cols-12 gap-12 lg:gap-20">
             <Reveal className="lg:col-span-6">
               <div className="w-10 h-px bg-[#FFD400] mb-6" />
@@ -179,7 +179,7 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
         </section>
 
         {/* CHALLENGE + SOLUTION */}
-        <section className="py-16 md:py-24 bg-white text-black">
+        <section className="pt-2 md:pt-4 pb-10 md:pb-16 bg-white text-black">
           <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 md:gap-20">
             <Reveal>
               <div className="w-10 h-px bg-[#FFD400] mb-6" style={{ height: 2 }} />
@@ -195,7 +195,7 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
         </section>
 
         {/* GALLERY */}
-        <section className="py-16 md:py-24">
+        <section className="pt-2 md:pt-4 pb-10 md:pb-16">
           <div className="container mx-auto px-6">
             <Reveal>
               <div className="w-10 h-px bg-[#FFD400] mb-6" />
@@ -220,7 +220,7 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
         </section>
 
         {/* NEXT PROJECT + CTA in one section */}
-        <section className="border-t border-white/10 py-16 md:py-24">
+        <section className="border-t border-white/10 pt-2 md:pt-4 pb-10 md:pb-16">
           <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
             <Reveal>
               <div className="w-10 h-px bg-[#FFD400] mb-6" />

@@ -110,7 +110,7 @@ export default function ProcessPage() {
         </section>
 
         {/* STEPS: sticky image panel on the left, scrolling steps on the right */}
-        <section className="border-t border-white/10 py-16 md:py-24">
+        <section className="border-t border-white/10 pt-2 md:pt-4 pb-10 md:pb-16">
           <div className="container mx-auto px-6 grid lg:grid-cols-12 gap-10 lg:gap-16">
             {/* sticky panel (desktop only) */}
             <div className="hidden lg:block lg:col-span-5">

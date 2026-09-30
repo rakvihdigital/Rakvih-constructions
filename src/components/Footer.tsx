@@ -92,11 +92,11 @@ export default function Footer() {
             <h4 className="font-serif font-light text-xl mb-6">Connect</h4>
             <ul className="space-y-5 font-light text-neutral-400">
               <li>
-                <a href="tel:+918296392047" className={`group flex gap-4 items-center ${linkClass}`}>
+                <a href="tel:+919964244994" className={`group flex gap-4 items-center ${linkClass}`}>
                   <span className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center shrink-0 group-hover:bg-[#FFD400] group-hover:border-[#FFD400] transition-colors duration-300">
                     <Phone className="w-4 h-4 text-[#FFD400] group-hover:text-black transition-colors duration-300" />
                   </span>
-                  +91 82963 92047
+                  +91 99642 44994
                 </a>
               </li>
               <li>

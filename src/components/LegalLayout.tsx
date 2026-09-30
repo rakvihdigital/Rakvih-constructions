@@ -67,7 +67,7 @@ export default function LegalLayout({ titleA, titleB, updated, sections }: Props
         </section>
 
         {/* CONTENT */}
-        <section className="py-16 md:py-24">
+        <section className="pt-2 md:pt-4 pb-10 md:pb-16">
           <div className="container mx-auto px-6 grid lg:grid-cols-12 gap-12 lg:gap-16">
             {/* contents list */}
             <aside className="hidden lg:block lg:col-span-4">

@@ -173,7 +173,7 @@ export default function InsightsPage() {
         </section>
 
         {/* FEATURED */}
-        <section className="py-16 md:py-24 border-t border-white/10">
+        <section className="pt-2 md:pt-4 pb-10 md:pb-16 border-t border-white/10">
           <div className="container mx-auto px-6">
             <Reveal>
               <div className="w-10 h-px bg-[#FFD400] mb-6" />
@@ -205,7 +205,7 @@ export default function InsightsPage() {
         </section>
 
         {/* ALL ARTICLES with category filter */}
-        <section className="py-16 md:py-24 border-t border-white/10">
+        <section className="pt-2 md:pt-4 pb-10 md:pb-16 border-t border-white/10">
           <div className="container mx-auto px-6">
             <Reveal>
               <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12">

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Search, ArrowRight, Menu, X, Phone, Mail } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -104,7 +105,17 @@ export default function Header() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 md:gap-2">
+            <a
+              href="https://wa.me/919964244994?text=Hi%20Rakvih%20Construction,%20I%20would%20like%20to%20discuss%20a%20project."
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Chat on WhatsApp"
+              className="w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center text-neutral-300 hover:bg-white/10 hover:text-[#25D366] transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#25D366]"
+            >
+              <FaWhatsapp className="w-[18px] h-[18px]" />
+            </a>
+
             <button
               onClick={() => setSearchOpen(true)}
               aria-label="Open search (Ctrl or Command + K)"
@@ -165,8 +176,8 @@ export default function Header() {
                   Start a project <ArrowRight className="w-4 h-4" />
                 </Link>
                 <div className="mt-5 flex flex-col gap-3 text-neutral-400">
-                  <a href="tel:+918296392047" className="inline-flex items-center gap-3 hover:text-[#FFD400] transition-colors">
-                    <Phone className="w-4 h-4 text-[#FFD400]" /> +91 82963 92047
+                  <a href="tel:+919964244994" className="inline-flex items-center gap-3 hover:text-[#FFD400] transition-colors">
+                    <Phone className="w-4 h-4 text-[#FFD400]" /> +91 99642 44994
                   </a>
                   <a href="mailto:info@rakvih.com" className="inline-flex items-center gap-3 hover:text-[#FFD400] transition-colors">
                     <Mail className="w-4 h-4 text-[#FFD400]" /> info@rakvih.com

@@ -22,7 +22,7 @@ const info = [
     title: 'Corporate headquarters',
     lines: ['238, 2nd Main, 2nd Cross, Attur Layout', 'Yelahanka, Bengaluru', 'Karnataka 560064'],
   },
-  { icon: Phone, title: 'Direct contact', lines: ['+91 82963 92047'], href: 'tel:+918296392047' },
+  { icon: Phone, title: 'Direct contact', lines: ['+91 99642 44994'], href: 'tel:+919964244994' },
   {
     icon: Mail,
     title: 'Email inquiries',
@@ -155,7 +155,7 @@ export default function ContactPage() {
         </section>
 
         {/* MAIN: info + map on the left, form on the right */}
-        <section className="py-16 md:py-24 border-t border-white/10">
+        <section className="pt-2 md:pt-4 pb-10 md:pb-16 border-t border-white/10">
           <div className="container mx-auto px-6 grid lg:grid-cols-12 gap-12 lg:gap-16">
             {/* LEFT */}
             <div className="lg:col-span-5">

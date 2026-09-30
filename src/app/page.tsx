@@ -135,7 +135,7 @@ export default function HomePage() {
         {/* ===================== REDESIGNED SECTIONS ===================== */}
         <div className="relative z-20 bg-black w-full">
           {/* SERVICES */}
-          <section id="services" className="py-20 md:py-28">
+          <section id="services" className="pt-2 md:pt-4 pb-10 md:pb-16">
             <div className="container mx-auto px-6">
               <Reveal>
                 <SectionHead
@@ -168,7 +168,7 @@ export default function HomePage() {
           </section>
 
           {/* FEATURED PROJECTS (light section for contrast) */}
-          <section id="projects" className="py-20 md:py-28 bg-white text-black">
+          <section id="projects" className="pt-2 md:pt-4 pb-10 md:pb-16 bg-white text-black">
             <div className="container mx-auto px-6">
               <Reveal>
                 <SectionHead
@@ -203,7 +203,7 @@ export default function HomePage() {
           </section>
 
           {/* PROCESS: six numbered steps (a real sequence) */}
-          <section id="process" className="py-20 md:py-28">
+          <section id="process" className="pt-2 md:pt-4 pb-10 md:pb-16">
             <div className="container mx-auto px-6">
               <Reveal>
                 <SectionHead
@@ -235,7 +235,7 @@ export default function HomePage() {
           </section>
 
           {/* COMMITMENT */}
-          <section id="about" className="relative py-20 md:py-28 border-t border-white/10 overflow-hidden">
+          <section id="about" className="relative pt-2 md:pt-4 pb-10 md:pb-16 border-t border-white/10 overflow-hidden">
             <Image src="/images/process.jpg" alt="Sustainable building" fill className="object-cover opacity-25" />
             <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/60" aria-hidden />
 
@@ -268,7 +268,7 @@ export default function HomePage() {
           </section>
 
           {/* TESTIMONIAL */}
-          <section className="py-20 md:py-28 bg-white text-black">
+          <section className="pt-2 md:pt-4 pb-10 md:pb-16 bg-white text-black">
             <div className="container mx-auto px-6 max-w-4xl text-center">
               <Reveal>
                 <div className="w-10 h-[2px] bg-[#FFD400] mb-8 mx-auto" />
@@ -292,7 +292,7 @@ export default function HomePage() {
           </section>
 
           {/* INSIGHTS */}
-          <section id="insights" className="py-20 md:py-28">
+          <section id="insights" className="pt-2 md:pt-4 pb-10 md:pb-16">
             <div className="container mx-auto px-6">
               <Reveal>
                 <SectionHead
@@ -325,7 +325,7 @@ export default function HomePage() {
           </section>
 
           {/* CTA */}
-          <section id="contact" className="border-t border-white/10 py-20 md:py-28">
+          <section id="contact" className="border-t border-white/10 pt-2 md:pt-4 pb-10 md:pb-16">
             <div className="container mx-auto px-6 flex flex-col md:flex-row md:items-center md:justify-between gap-10">
               <Reveal className="max-w-2xl">
                 <div className="w-10 h-px bg-[#FFD400] mb-6" />

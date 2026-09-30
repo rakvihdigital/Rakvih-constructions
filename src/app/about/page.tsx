@@ -202,7 +202,7 @@ export default function AboutPage() {
         </div>
 
         {/* STORY */}
-        <section id="story" className="py-20 md:py-28">
+        <section id="story" className="py-10 md:py-16">
           <div className="container mx-auto px-6">
             <div className="grid lg:grid-cols-2 gap-14 lg:gap-24">
               <Reveal>
@@ -235,7 +235,7 @@ export default function AboutPage() {
         </section>
 
         {/* VALUES */}
-        <section className="py-20 md:py-28 bg-white text-black">
+        <section className="py-10 md:py-16 bg-white text-black">
           <div className="container mx-auto px-6 grid lg:grid-cols-12 gap-10">
             <div className="lg:col-span-4">
               <div className="lg:sticky lg:top-28">
@@ -273,7 +273,7 @@ export default function AboutPage() {
         </section>
 
         {/* LEADERSHIP: photos always in full colour */}
-        <section className="py-20 md:py-28">
+        <section className="py-10 md:py-16">
           <div className="container mx-auto px-6">
             <div className="grid lg:grid-cols-2 gap-6 mb-12 items-end">
               <div>
@@ -314,7 +314,7 @@ export default function AboutPage() {
         </section>
 
         {/* ONE COMBINED SECTION: call to action + stay updated */}
-        <section className="border-t border-white/10 py-20 md:py-28">
+        <section className="border-t border-white/10 py-10 md:py-16">
           <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-14 lg:gap-24 items-center">
             <Reveal>
               <div className="w-10 h-px bg-[#FFD400] mb-6" />

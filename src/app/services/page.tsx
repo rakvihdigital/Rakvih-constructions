@@ -131,7 +131,7 @@ export default function ServicesPage() {
         </section>
 
         {/* SERVICES: sticky index + detailed blocks */}
-        <section className="border-t border-white/10 py-16 md:py-24">
+        <section className="border-t border-white/10 pt-2 md:pt-4 pb-10 md:pb-16">
           <div className="container mx-auto px-6 grid lg:grid-cols-12 gap-12 lg:gap-16">
             {/* index */}
             <aside className="hidden lg:block lg:col-span-4">
