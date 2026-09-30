@@ -1,173 +1,283 @@
+'use client';
+
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import Header from '@/components/Header';
-import FadeIn from '@/components/FadeIn';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
+import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
+/* ---------- data ---------- */
+const featured = {
+  slug: 'bim-integration',
+  cat: 'Technology',
+  title: 'BIM Integration: Building the Future Virtually Before Breaking Ground',
+  date: 'August 12, 2026',
+  img: '/images/process.jpg',
+  excerpt:
+    'How Building Information Modeling is drastically reducing errors and streamlining complex MEP coordination across our projects.',
+};
+
+const articles = [
+  {
+    slug: 'carbon-neutral-concrete',
+    cat: 'Sustainability',
+    title: 'Carbon-Neutral Concrete: The Next Big Leap in Green Construction',
+    date: 'July 28, 2026',
+    img: '/images/sustainable.jpg',
+    excerpt: 'Exploring alternative materials and supply chain adjustments required to achieve zero-emission concrete pours.',
+  },
+  {
+    slug: 'biophilic-design',
+    cat: 'Design Trends',
+    title: 'Biophilic Design in Commercial Real Estate',
+    date: 'June 05, 2026',
+    img: '/images/commercial.jpg',
+    excerpt: 'Why bringing nature indoors is no longer just an aesthetic choice, but a requirement for modern corporate spaces.',
+  },
+  {
+    slug: 'ai-safety-monitoring',
+    cat: 'Safety',
+    title: 'AI-Powered Safety Monitoring on High-Rise Projects',
+    date: 'May 19, 2026',
+    img: '/images/details.jpg',
+    excerpt: 'Implementing computer vision to automatically detect PPE compliance and hazardous zones.',
+  },
+  {
+    slug: 'supply-chain-volatility',
+    cat: 'Market Update',
+    title: 'Navigating Supply Chain Volatility in 2026',
+    date: 'April 02, 2026',
+    img: '/images/industrial.jpg',
+    excerpt: 'Strategies for mitigating risk and ensuring project timelines remain unaffected by global material shortages.',
+  },
+  {
+    slug: 'infrastructure-award',
+    cat: 'Company News',
+    title: 'Rakvih Construction Wins Excellence in Infrastructure Award',
+    date: 'March 15, 2026',
+    img: '/images/hero.jpg',
+    excerpt: 'Recognition for our work on the Riverside Elevated Corridor and our commitment to public safety.',
+  },
+];
+
+const categories = ['All', ...Array.from(new Set(articles.map((a) => a.cat)))];
+const PAGE_SIZE = 3;
+
+/* ---------- helpers ---------- */
+function Reveal({ children, delay = 0, className = '' }: { children: ReactNode; delay?: number; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [seen, setSeen] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setSeen(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.12 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return (
+    <div
+      ref={ref}
+      style={{ transitionDelay: `${delay}ms` }}
+      className={`transition-all duration-1000 ease-out motion-reduce:transition-none ${
+        seen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 motion-reduce:opacity-100 motion-reduce:translate-y-0'
+      } ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
+
+/* ---------- page ---------- */
 export default function InsightsPage() {
-  const featured = {
-    cat: "Technology",
-    title: "BIM Integration: Building the Future Virtually Before Breaking Ground",
-    date: "August 12, 2026",
-    img: "/images/process.jpg",
-    excerpt: "How Building Information Modeling is drastically reducing errors and streamlining complex MEP coordination across our projects."
+  const heroRef = useRef<HTMLElement>(null);
+  const [progress, setProgress] = useState(0);
+  const [filter, setFilter] = useState('All');
+  const [visible, setVisible] = useState(PAGE_SIZE);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const h = document.documentElement;
+      setProgress((h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const onMove = (e: React.MouseEvent) => {
+    const el = heroRef.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    el.style.setProperty('--x', `${e.clientX - r.left}px`);
+    el.style.setProperty('--y', `${e.clientY - r.top}px`);
   };
 
-  const articles = [
-    {
-      cat: "Sustainability",
-      title: "Carbon-Neutral Concrete: The Next Big Leap in Green Construction",
-      date: "July 28, 2026",
-      img: "/images/sustainable.jpg",
-      excerpt: "Exploring alternative materials and supply chain adjustments required to achieve zero-emission concrete pours."
-    },
-    {
-      cat: "Design Trends",
-      title: "Biophilic Design in Commercial Real Estate",
-      date: "June 05, 2026",
-      img: "/images/commercial.jpg",
-      excerpt: "Why bringing nature indoors is no longer just an aesthetic choice, but a requirement for modern corporate spaces."
-    },
-    {
-      cat: "Safety",
-      title: "AI-Powered Safety Monitoring on High-Rise Projects",
-      date: "May 19, 2026",
-      img: "/images/details.jpg",
-      excerpt: "Implementing computer vision to automatically detect PPE compliance and hazardous zones."
-    },
-    {
-      cat: "Market Update",
-      title: "Navigating Supply Chain Volatility in 2026",
-      date: "April 02, 2026",
-      img: "/images/industrial.jpg",
-      excerpt: "Strategies for mitigating risk and ensuring project timelines remain unaffected by global material shortages."
-    },
-    {
-      cat: "Company News",
-      title: "Rakvih Construction Wins Excellence in Infrastructure Award",
-      date: "March 15, 2026",
-      img: "/images/hero.jpg",
-      excerpt: "Recognition for our work on the Riverside Elevated Corridor and our commitment to public safety."
-    }
-  ];
+  const filtered = filter === 'All' ? articles : articles.filter((a) => a.cat === filter);
+  const shown = filtered.slice(0, visible);
 
   return (
-    <div className="min-h-screen flex flex-col bg-dark-bg text-white font-sans selection:bg-gold selection:text-black">
+    <div className="min-h-screen flex flex-col bg-black text-white font-sans selection:bg-[#FFD400] selection:text-black">
+      <style>{`
+        @keyframes rise { from { transform: translateY(110%); } to { transform: translateY(0); } }
+        @keyframes drift { from { transform: scale(1.12); } to { transform: scale(1); } }
+        .rise { animation: rise 1.1s cubic-bezier(.16,1,.3,1) both; }
+        .drift { animation: drift 2.4s cubic-bezier(.16,1,.3,1) both; }
+        @media (prefers-reduced-motion: reduce) { .rise, .drift { animation: none; } }
+      `}</style>
+
+      <div className="fixed top-0 left-0 h-[2px] bg-[#FFD400] z-[60]" style={{ width: `${progress}%` }} aria-hidden />
+
       <Header />
-      <main className="flex-grow pt-16">
-        {/* Hero Section with Image */}
-        <section className="relative pt-24 pb-12 lg:pt-36 lg:pb-16 overflow-hidden border-b border-white/5">
-          <div className="absolute inset-0 z-0">
-            <div className="absolute inset-0 bg-dark-bg/80 z-10" />
-            <div className="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent z-10" />
-            <Image
-              src="/images/hero.jpg"
-              alt="Industry Insights"
-              fill
-              className="object-cover object-center grayscale opacity-50"
-            />
-          </div>
-          <div className="w-full max-w-[1920px] mx-auto px-6 md:px-12 lg:px-16 relative z-20 text-center md:text-left">
-            <FadeIn direction="up">
-              <div className="flex flex-col md:flex-row justify-between items-end gap-8">
-                <div>
-                  <p className="text-gold font-bold text-xs tracking-[0.2em] uppercase mb-4">News & Updates</p>
-                  <h1 className="text-5xl md:text-7xl font-light mb-6 md:mb-0">
-                    Industry <br /> <span className="font-bold">Insights</span>
-                  </h1>
-                </div>
-                <p className="text-gray-300 text-lg max-w-md font-light leading-relaxed mx-auto md:mx-0 text-center md:text-right">
-                  Expert perspectives, construction technology updates, sustainability guides, and news from our latest projects.
-                </p>
-              </div>
-            </FadeIn>
+
+      <main className="flex-grow">
+        {/* HERO */}
+        <section
+          ref={heroRef}
+          onMouseMove={onMove}
+          className="relative min-h-[60vh] flex items-end overflow-hidden pt-24"
+          style={{ ['--x' as string]: '70%', ['--y' as string]: '30%' }}
+        >
+          <Image src="/images/hero.jpg" alt="Rakvih Construction project" fill priority className="object-cover opacity-40 drift" />
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{ background: 'radial-gradient(420px circle at var(--x) var(--y), rgba(255,212,0,0.2), transparent 70%)' }}
+            aria-hidden
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/50" aria-hidden />
+
+          <div className="container mx-auto px-6 pb-12 lg:pb-16 relative">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+              <h1 className="font-serif font-light tracking-tight leading-[1.05] text-4xl sm:text-5xl lg:text-6xl">
+                <span className="block overflow-hidden pb-1">
+                  <span className="block rise">Industry</span>
+                </span>
+                <span className="block overflow-hidden pb-1">
+                  <span className="block rise text-[#FFD400] italic" style={{ animationDelay: '150ms' }}>
+                    insights.
+                  </span>
+                </span>
+              </h1>
+              <p className="max-w-md text-neutral-300 font-light text-base md:text-lg leading-relaxed md:text-right">
+                Expert perspectives, construction technology updates, sustainability guides, and news from our latest projects.
+              </p>
+            </div>
           </div>
         </section>
 
-        {/* Featured Article — Light Section */}
-        <section className="bg-gray-50 py-16 md:py-24">
-          <div className="w-full max-w-[1920px] mx-auto px-6 md:px-12 lg:px-16">
-            <FadeIn direction="up">
-              <p className="text-gold font-bold text-xs tracking-[0.2em] uppercase mb-4">Featured</p>
-            </FadeIn>
-            <FadeIn direction="up" delay={100}>
-              <div className="flex flex-col lg:flex-row gap-0 group cursor-pointer">
-                {/* Image Half */}
-                <div className="w-full lg:w-1/2 h-[350px] lg:h-[500px] relative overflow-hidden">
-                  <Image
-                    src={featured.img}
-                    alt={featured.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-1000"
-                  />
-                  <div className="absolute top-6 left-6 bg-dark-bg/80 backdrop-blur-sm text-white text-xs font-bold px-4 py-2 uppercase tracking-wider">
+        {/* FEATURED */}
+        <section className="py-16 md:py-24 border-t border-white/10">
+          <div className="container mx-auto px-6">
+            <Reveal>
+              <div className="w-10 h-px bg-[#FFD400] mb-6" />
+              <h2 className="font-serif font-light text-3xl md:text-4xl mb-10">Featured article</h2>
+            </Reveal>
+
+            <Reveal delay={100}>
+              <Link href={`/insights/${featured.slug}`} className="group grid lg:grid-cols-2 gap-0 border border-white/10 hover:border-[#FFD400]/60 transition-colors duration-700 outline-none focus-visible:border-[#FFD400]">
+                <div className="relative h-[300px] lg:h-[480px] overflow-hidden">
+                  <Image src={featured.img} alt={featured.title} fill className="object-cover group-hover:scale-105 transition-transform duration-1000" />
+                  <span className="absolute top-5 left-5 bg-black/70 backdrop-blur-sm border border-white/15 text-sm px-4 py-1.5 rounded-full">
                     {featured.cat}
-                  </div>
+                  </span>
                 </div>
-                {/* Text Half */}
-                <div className="w-full lg:w-1/2 bg-white p-10 md:p-16 flex flex-col justify-center border border-gray-200 group-hover:border-gold/30 transition-colors duration-700">
-                  <p className="text-xs text-gray-500 uppercase tracking-wider mb-4">{featured.date}</p>
-                  <h2 className="text-3xl md:text-4xl font-light text-dark-bg mb-6 leading-tight group-hover:text-gold transition-colors duration-500">
+                <div className="p-8 md:p-14 flex flex-col justify-center">
+                  <p className="text-sm text-neutral-500 mb-4">{featured.date}</p>
+                  <h3 className="font-serif font-light text-2xl md:text-4xl leading-tight mb-5 group-hover:text-[#FFD400] transition-colors duration-500">
                     {featured.title}
-                  </h2>
-                  <p className="text-gray-600 text-lg leading-relaxed mb-8 font-light">{featured.excerpt}</p>
-                  <div className="flex items-center gap-2 text-gold font-bold text-sm uppercase tracking-wider">
-                    Read Full Article <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
-                  </div>
+                  </h3>
+                  <p className="text-neutral-400 font-light text-base md:text-lg leading-relaxed mb-8">{featured.excerpt}</p>
+                  <span className="inline-flex items-center gap-3 text-[#FFD400] text-sm md:text-base">
+                    Read full article
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-500" />
+                  </span>
                 </div>
-              </div>
-            </FadeIn>
+              </Link>
+            </Reveal>
           </div>
         </section>
 
-        {/* Blog Grid — Dark Section */}
-        <section className="py-16 md:py-24 bg-dark-bg">
-          <div className="w-full max-w-[1920px] mx-auto px-6 md:px-12 lg:px-16">
-            <FadeIn direction="up">
-              <div className="flex flex-col md:flex-row justify-between items-end mb-12">
+        {/* ALL ARTICLES with category filter */}
+        <section className="py-16 md:py-24 border-t border-white/10">
+          <div className="container mx-auto px-6">
+            <Reveal>
+              <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12">
                 <div>
-                  <p className="text-gold font-bold text-xs tracking-[0.2em] uppercase mb-4">Latest</p>
-                  <h2 className="text-4xl md:text-5xl font-light">
-                    All <span className="font-bold">Articles</span>
-                  </h2>
+                  <div className="w-10 h-px bg-[#FFD400] mb-6" />
+                  <h2 className="font-serif font-light text-3xl md:text-4xl">All articles</h2>
+                </div>
+                <div className="flex flex-wrap gap-3" role="group" aria-label="Filter articles by category">
+                  {categories.map((c) => (
+                    <button
+                      key={c}
+                      aria-pressed={filter === c}
+                      onClick={() => {
+                        setFilter(c);
+                        setVisible(PAGE_SIZE);
+                      }}
+                      className={`px-5 py-2 rounded-full border text-sm transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFD400] ${
+                        filter === c
+                          ? 'bg-[#FFD400] border-[#FFD400] text-black font-medium'
+                          : 'border-white/25 text-neutral-300 hover:border-[#FFD400] hover:text-white'
+                      }`}
+                    >
+                      {c}
+                    </button>
+                  ))}
                 </div>
               </div>
-            </FadeIn>
+            </Reveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {articles.map((article, idx) => (
-                <FadeIn key={idx} direction="up" delay={idx * 100}>
-                  <div className="group cursor-pointer flex flex-col h-full border border-white/5 hover:border-gold/30 transition-all duration-700 bg-dark-card overflow-hidden hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
-                    <div className="relative h-64 overflow-hidden">
-                      <Image src={article.img} alt={article.title} fill className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000" />
-                      <div className="absolute inset-0 bg-dark-bg/20 group-hover:bg-transparent transition-colors duration-700" />
-                      <div className="absolute top-4 left-4 bg-dark-bg/80 backdrop-blur-sm border border-white/10 text-white text-xs font-bold px-3 py-1.5 uppercase tracking-wider">
-                        {article.cat}
-                      </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {shown.map((a, i) => (
+                <Reveal key={a.slug} delay={(i % PAGE_SIZE) * 100}>
+                  <Link
+                    href={`/insights/${a.slug}`}
+                    className="group flex flex-col h-full border border-white/10 hover:border-[#FFD400]/60 transition-colors duration-700 outline-none focus-visible:border-[#FFD400]"
+                  >
+                    <div className="relative h-56 overflow-hidden">
+                      <Image src={a.img} alt={a.title} fill className="object-cover group-hover:scale-105 transition-transform duration-1000" />
+                      <span className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm border border-white/15 text-xs px-3 py-1 rounded-full">
+                        {a.cat}
+                      </span>
                     </div>
-                    <div className="p-8 flex flex-col flex-grow">
-                      <p className="text-xs text-gray-500 mb-3 uppercase tracking-wider">{article.date}</p>
-                      <h3 className="font-bold text-xl mb-4 leading-snug group-hover:text-gold transition-colors duration-500">{article.title}</h3>
-                      <p className="text-gray-400 mb-8 flex-grow font-light">{article.excerpt}</p>
-                      <div className="flex items-center gap-2 text-gold font-bold text-sm uppercase tracking-wider mt-auto">
-                        Read Full Article <ArrowRight className="w-4 h-4 transform group-hover:translate-x-2 transition-transform" />
-                      </div>
+                    <div className="p-6 md:p-7 flex flex-col flex-grow">
+                      <p className="text-sm text-neutral-500 mb-3">{a.date}</p>
+                      <h3 className="font-serif font-light text-xl md:text-2xl leading-snug mb-4 group-hover:text-[#FFD400] transition-colors duration-500">
+                        {a.title}
+                      </h3>
+                      <p className="text-neutral-400 font-light text-base leading-relaxed mb-6 flex-grow">{a.excerpt}</p>
+                      <span className="inline-flex items-center gap-3 text-[#FFD400] text-sm mt-auto">
+                        Read full article
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-500" />
+                      </span>
                     </div>
-                  </div>
-                </FadeIn>
+                  </Link>
+                </Reveal>
               ))}
             </div>
-            
-            <FadeIn direction="up" delay={600}>
-              <div className="mt-16 text-center">
-                <button className="border border-white/20 text-white px-8 py-4 hover:border-gold hover:bg-gold hover:text-dark-bg hover:shadow-[0_10px_40px_rgba(212,175,55,0.3)] transition-all duration-500 font-semibold uppercase tracking-wider text-sm">
-                  Load More Articles
+
+            {visible < filtered.length && (
+              <div className="mt-14 text-center">
+                <button
+                  onClick={() => setVisible((v) => v + PAGE_SIZE)}
+                  className="border border-white/25 rounded-full px-8 py-3.5 hover:bg-[#FFD400] hover:border-[#FFD400] hover:text-black transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFD400]"
+                >
+                  Load more articles
                 </button>
               </div>
-            </FadeIn>
+            )}
           </div>
         </section>
       </main>
+
       <Footer />
     </div>
   );

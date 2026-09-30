@@ -3,93 +3,148 @@ import Image from 'next/image';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { FaFacebook as Facebook, FaInstagram as Instagram, FaLinkedin as Linkedin, FaYoutube as Youtube } from 'react-icons/fa';
 
+const explore = [
+  { label: 'Home', href: '/' },
+  { label: 'About us', href: '/about' },
+  { label: 'Portfolio', href: '/projects' },
+  { label: 'Our process', href: '/process' },
+  { label: 'Insights', href: '/insights' },
+];
+
+const services = [
+  'Residential spaces',
+  'Commercial complexes',
+  'Industrial facilities',
+  'Infrastructure',
+  'Interior fit-outs',
+];
+
+const socials = [
+  { label: 'LinkedIn', icon: Linkedin },
+  { label: 'Instagram', icon: Instagram },
+  { label: 'YouTube', icon: Youtube },
+  { label: 'Facebook', icon: Facebook },
+];
+
+const linkClass =
+  'text-neutral-400 hover:text-[#FFD400] transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFD400]';
+
 export default function Footer() {
   return (
-    <footer className="bg-dark-bg pt-12 pb-6 border-t border-white/10 text-white font-sans mt-auto">
-      <div className="w-full px-4 md:px-8 lg:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-12">
-          <div className="md:col-span-1">
-            <Link href="/" className="mb-6 block">
-              <Image src="/logo-transparent.png" alt="Rakvih Logo" width={180} height={60} className="object-contain" />
+    <footer className="bg-black text-white mt-auto border-t border-white/10">
+      {/* thin yellow accent */}
+      <div className="h-px w-24 bg-[#FFD400] ml-6 lg:ml-12" aria-hidden />
+
+      <div className="container mx-auto px-6 lg:px-12 pt-16 pb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
+          {/* Brand */}
+          <div className="lg:col-span-4 lg:pr-10">
+            <Link href="/" className="block mb-6">
+              <Image src="/logo-transparent.png" alt="Rakvih Construction home" width={160} height={50} className="object-contain" />
             </Link>
-            <p className="text-gray-400 text-sm mb-6 leading-relaxed">
-              Building iconic spaces and stronger communities through innovation, integrity and excellence.
+            <p className="text-neutral-400 font-light text-base leading-relaxed mb-8 max-w-sm">
+              Building iconic spaces and stronger communities through innovation, integrity, and uncompromising excellence.
             </p>
-            <div className="flex gap-4">
-              <Link href="#" className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center hover:bg-gold hover:text-dark-bg transition-colors"><Linkedin className="w-4 h-4" /></Link>
-              <Link href="#" className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center hover:bg-gold hover:text-dark-bg transition-colors"><Instagram className="w-4 h-4" /></Link>
-              <Link href="#" className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center hover:bg-gold hover:text-dark-bg transition-colors"><Youtube className="w-4 h-4" /></Link>
-              <Link href="#" className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center hover:bg-gold hover:text-dark-bg transition-colors"><Facebook className="w-4 h-4" /></Link>
+            <div className="flex gap-3">
+              {socials.map((s) => (
+                <Link
+                  key={s.label}
+                  href="#"
+                  aria-label={s.label}
+                  className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-neutral-300 hover:bg-[#FFD400] hover:border-[#FFD400] hover:text-black transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFD400]"
+                >
+                  <s.icon className="w-4 h-4" />
+                </Link>
+              ))}
             </div>
           </div>
-          
-          <div>
-            <h4 className="text-white font-bold mb-6 tracking-wider">Quick Links</h4>
-            <ul className="space-y-3 text-sm text-gray-400">
-              <li><Link href="/" className="hover:text-gold transition-colors">Home</Link></li>
-              <li><Link href="/about" className="hover:text-gold transition-colors">About Us</Link></li>
-              <li><Link href="/services" className="hover:text-gold transition-colors">Services</Link></li>
-              <li><Link href="/projects" className="hover:text-gold transition-colors">Projects</Link></li>
-              <li><Link href="/process" className="hover:text-gold transition-colors">Process</Link></li>
-              <li><Link href="/insights" className="hover:text-gold transition-colors">Insights</Link></li>
+
+          {/* Explore */}
+          <div className="lg:col-span-2 lg:col-start-6">
+            <h4 className="font-serif font-light text-xl mb-6">Explore</h4>
+            <ul className="space-y-3 font-light">
+              {explore.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className={linkClass}>
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
-          
-          <div>
-            <h4 className="text-white font-bold mb-6 tracking-wider">Our Services</h4>
-            <ul className="space-y-3 text-sm text-gray-400">
-              <li><Link href="/services" className="hover:text-gold transition-colors">Residential Construction</Link></li>
-              <li><Link href="/services" className="hover:text-gold transition-colors">Commercial Construction</Link></li>
-              <li><Link href="/services" className="hover:text-gold transition-colors">Industrial Construction</Link></li>
-              <li><Link href="/services" className="hover:text-gold transition-colors">Infrastructure Projects</Link></li>
-              <li><Link href="/services" className="hover:text-gold transition-colors">Interior & Fit-Out</Link></li>
-              <li><Link href="/services" className="hover:text-gold transition-colors">Project Management</Link></li>
+
+          {/* Services */}
+          <div className="lg:col-span-2">
+            <h4 className="font-serif font-light text-xl mb-6">Services</h4>
+            <ul className="space-y-3 font-light">
+              {services.map((s) => (
+                <li key={s}>
+                  <Link href="/services" className={linkClass}>
+                    {s}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
-          
-          <div>
-            <h4 className="text-white font-bold mb-6 tracking-wider">Support</h4>
-            <ul className="space-y-3 text-sm text-gray-400">
-              <li><Link href="/contact" className="hover:text-gold transition-colors">Contact Us</Link></li>
-              <li><Link href="/terms-of-service" className="hover:text-gold transition-colors">Terms & Conditions</Link></li>
-              <li><Link href="/privacy-policy" className="hover:text-gold transition-colors">Privacy Policy</Link></li>
-              <li><Link href="#" className="hover:text-gold transition-colors">FAQ</Link></li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-white font-bold mb-6 tracking-wider">Contact Us</h4>
-            <ul className="space-y-4 text-sm text-gray-400">
-              <li className="flex gap-3 items-start">
-                <Phone className="w-5 h-5 text-gold shrink-0" />
-                <span>+91 82963 92047</span>
+
+          {/* Connect */}
+          <div className="lg:col-span-3">
+            <h4 className="font-serif font-light text-xl mb-6">Connect</h4>
+            <ul className="space-y-5 font-light text-neutral-400">
+              <li>
+                <a href="tel:+918296392047" className={`group flex gap-4 items-center ${linkClass}`}>
+                  <span className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center shrink-0 group-hover:bg-[#FFD400] group-hover:border-[#FFD400] transition-colors duration-300">
+                    <Phone className="w-4 h-4 text-[#FFD400] group-hover:text-black transition-colors duration-300" />
+                  </span>
+                  +91 82963 92047
+                </a>
               </li>
-              <li className="flex gap-3 items-start">
-                <Mail className="w-5 h-5 text-gold shrink-0" />
-                <span>info@rakvihconstruction.com</span>
+              <li>
+                <a href="mailto:info@rakvih.com" className={`group flex gap-4 items-center ${linkClass}`}>
+                  <span className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center shrink-0 group-hover:bg-[#FFD400] group-hover:border-[#FFD400] transition-colors duration-300">
+                    <Mail className="w-4 h-4 text-[#FFD400] group-hover:text-black transition-colors duration-300" />
+                  </span>
+                  info@rakvih.com
+                </a>
               </li>
-              <li className="flex gap-3 items-start">
-                <MapPin className="w-5 h-5 text-gold shrink-0 mt-1" />
-                <span>238, 2nd Main, 2nd Cross,<br />Attur Layout, Yelahanka,<br />Bengaluru, Karnataka 560064</span>
+              <li className="flex gap-4 items-start">
+                <span className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center shrink-0">
+                  <MapPin className="w-4 h-4 text-[#FFD400]" />
+                </span>
+                <span className="leading-relaxed">
+                  238, 2nd Main, 2nd Cross,
+                  <br />
+                  Attur Layout, Yelahanka,
+                  <br />
+                  Bengaluru 560064
+                </span>
               </li>
             </ul>
           </div>
         </div>
-        
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500 text-center">
-          <div className="md:w-1/3 md:text-left">
-            <p>© 2026 Rakvih Construction. All rights reserved.</p>
+
+        {/* Bottom bar */}
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-5 text-sm text-neutral-500 font-light">
+          <p>© {new Date().getFullYear()} Rakvih Construction. All rights reserved.</p>
+          <div className="flex items-center gap-6">
+            <Link href="/privacy-policy" className={linkClass}>
+              Privacy policy
+            </Link>
+            <Link href="/terms-of-service" className={linkClass}>
+              Terms of service
+            </Link>
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-4 md:w-1/3">
-            <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <span className="text-white/20">|</span>
-            <Link href="/terms-of-service" className="hover:text-white transition-colors">Terms & Conditions</Link>
-          </div>
-          <div className="md:w-1/3 md:text-right">
-            <a href="https://rakvih.in/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-              Powered by <span className="text-gold">Rakvih</span>
+          <p>
+            Designed by{' '}
+            <a
+              href="https://rakvih.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-neutral-300 hover:text-[#FFD400] transition-colors"
+            >
+              Rakvih
             </a>
-          </div>
+          </p>
         </div>
       </div>
     </footer>

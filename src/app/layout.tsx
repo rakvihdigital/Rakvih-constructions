@@ -1,9 +1,17 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Playfair_Display, Montserrat } from "next/font/google";
 import "./globals.css";
 import ScrollAnimation from "@/components/ScrollAnimation";
 
-const inter = Inter({ subsets: ["latin"] });
+const playfair = Playfair_Display({ 
+  subsets: ["latin"],
+  variable: "--font-playfair"
+});
+
+const montserrat = Montserrat({ 
+  subsets: ["latin"],
+  variable: "--font-montserrat" 
+});
 
 export const metadata: Metadata = {
   title: "Rakvih Construction | Spaces Beyond Expectations",
@@ -17,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark scroll-smooth">
-      <body className={`${inter.className} antialiased bg-dark-bg text-white`}>
+      <body className={`${montserrat.className} ${playfair.variable} antialiased bg-dark-bg text-white`}>
         <ScrollAnimation />
         {children}
       </body>

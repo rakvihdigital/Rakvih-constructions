@@ -60,7 +60,11 @@
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans);
+  font-family: var(--font-montserrat), sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-playfair), serif;
 }
 
 /* Smooth scrolling */
@@ -258,6 +262,7 @@ html.lenis body {
   color: var(--color-gold);
 }
 .title-bold {
+  font-family: var(--font-playfair), serif;
   font-size: clamp(2.8rem, 7vw, 6rem);
   font-weight: 900;
   letter-spacing: -0.03em;
