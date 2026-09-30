@@ -75,16 +75,16 @@ export default function Header() {
 
         {/* Mobile Nav */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-dark-bg border-b border-white/10 px-6 py-4 flex flex-col gap-4 max-h-[calc(100vh-64px)] overflow-y-auto animate-fade-in-up">
-            <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-white hover:text-gold">Home</Link>
-            <Link href="/about" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-gray-300 hover:text-gold">About</Link>
-            <Link href="/services" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-gray-300 hover:text-gold">Services</Link>
-            <Link href="/projects" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-gray-300 hover:text-gold">Projects</Link>
-            <Link href="/process" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-gray-300 hover:text-gold">Process</Link>
-            <Link href="/insights" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-gray-300 hover:text-gold">Insights</Link>
-            <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-gray-300 hover:text-gold">Contact</Link>
-            <div className="pt-4 mt-2 border-t border-white/10">
-              <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-center gap-2 border border-gold/50 text-gold px-5 py-3 rounded hover:bg-gold hover:text-dark-bg transition-all text-sm font-medium w-full">
+          <div className="md:hidden px-6 py-4 flex flex-col gap-4 max-h-[calc(100vh-64px)] overflow-y-auto animate-fade-in-up">
+            <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-gray-800 hover:text-gold font-medium">Home</Link>
+            <Link href="/about" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-gold font-medium">About</Link>
+            <Link href="/services" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-gold font-medium">Services</Link>
+            <Link href="/projects" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-gold font-medium">Projects</Link>
+            <Link href="/process" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-gold font-medium">Process</Link>
+            <Link href="/insights" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-gold font-medium">Insights</Link>
+            <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-gold font-medium">Contact</Link>
+            <div className="pt-4 mt-2 border-t border-gray-200/50">
+              <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-center gap-2 bg-dark-bg text-white px-5 py-3 rounded hover:bg-gold hover:text-dark-bg transition-all text-sm font-medium w-full shadow-md">
                 START A PROJECT
                 <ArrowRight className="w-4 h-4" />
               </Link>

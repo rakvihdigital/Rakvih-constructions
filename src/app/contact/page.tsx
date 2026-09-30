@@ -17,12 +17,12 @@ export default function ContactPage() {
       <Header />
       <main className="flex-grow pt-16">
         {/* Hero Section with Image */}
-        <section className="relative pt-24 pb-12 lg:pt-36 lg:pb-16 overflow-hidden border-b border-white/5">
+        <section className="relative pt-12 pb-8 lg:pt-16 lg:pb-10 overflow-hidden border-b border-white/5">
           <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-dark-bg/80 z-10" />
             <div className="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent z-10" />
             <Image
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop"
+              src="/images/residential.jpg"
               alt="Contact Us"
               fill
               className="object-cover object-center grayscale opacity-50"
@@ -46,7 +46,7 @@ export default function ContactPage() {
         </section>
 
         {/* Contact Info Cards — Light Section */}
-        <section className="py-16 md:py-24 bg-gray-50">
+        <section className="py-12 md:py-16 bg-gray-50">
           <div className="w-full max-w-[1920px] mx-auto px-6 md:px-12 lg:px-16">
             <FadeIn direction="up">
               <p className="text-gold font-bold text-xs tracking-[0.2em] uppercase mb-4">Reach Us</p>
@@ -72,15 +72,15 @@ export default function ContactPage() {
         </section>
 
         {/* Contact Form — Dark Section */}
-        <section className="py-16 md:py-24 bg-dark-bg">
+        <section className="py-12 md:py-16 bg-dark-bg">
           <div className="w-full max-w-[1920px] mx-auto px-6 md:px-12 lg:px-16">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
               
               {/* Left: Image + CTA */}
-              <FadeIn direction="right">
+              <FadeIn direction="right" className="h-full">
                 <div className="relative h-[500px] lg:h-full min-h-[500px] overflow-hidden">
                   <Image
-                    src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1000&auto=format&fit=crop"
+                    src="/images/commercial.jpg"
                     alt="Start a Project"
                     fill
                     className="object-cover grayscale hover:grayscale-0 transition-all duration-1000"
@@ -96,35 +96,35 @@ export default function ContactPage() {
               </FadeIn>
 
               {/* Right: Form */}
-              <FadeIn direction="left" delay={200}>
-                <div className="bg-dark-card border border-white/5 p-10 md:p-14">
-                  <h3 className="text-3xl font-light mb-8">Start a <span className="font-bold">Project</span></h3>
-                  <form className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                        <label className="text-sm text-gray-400 uppercase tracking-wider font-semibold">Full Name *</label>
-                        <input type="text" className="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-gold transition-colors" />
+              <FadeIn direction="left" delay={200} className="h-full">
+                <div className="bg-dark-card border border-white/5 p-8 md:p-10 h-full flex flex-col justify-center">
+                  <h3 className="text-3xl font-light mb-6">Start a <span className="font-bold">Project</span></h3>
+                  <form className="space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-1">
+                        <label className="text-xs text-gray-400 uppercase tracking-wider font-semibold">Full Name *</label>
+                        <input type="text" className="w-full bg-transparent border-b border-white/20 py-2 text-white focus:outline-none focus:border-gold transition-colors" />
                       </div>
-                      <div className="space-y-2">
-                        <label className="text-sm text-gray-400 uppercase tracking-wider font-semibold">Company</label>
-                        <input type="text" className="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-gold transition-colors" />
+                      <div className="space-y-1">
+                        <label className="text-xs text-gray-400 uppercase tracking-wider font-semibold">Company</label>
+                        <input type="text" className="w-full bg-transparent border-b border-white/20 py-2 text-white focus:outline-none focus:border-gold transition-colors" />
                       </div>
                     </div>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                        <label className="text-sm text-gray-400 uppercase tracking-wider font-semibold">Email Address *</label>
-                        <input type="email" className="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-gold transition-colors" />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-1">
+                        <label className="text-xs text-gray-400 uppercase tracking-wider font-semibold">Email Address *</label>
+                        <input type="email" className="w-full bg-transparent border-b border-white/20 py-2 text-white focus:outline-none focus:border-gold transition-colors" />
                       </div>
-                      <div className="space-y-2">
-                        <label className="text-sm text-gray-400 uppercase tracking-wider font-semibold">Phone Number</label>
-                        <input type="tel" className="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-gold transition-colors" />
+                      <div className="space-y-1">
+                        <label className="text-xs text-gray-400 uppercase tracking-wider font-semibold">Phone Number</label>
+                        <input type="tel" className="w-full bg-transparent border-b border-white/20 py-2 text-white focus:outline-none focus:border-gold transition-colors" />
                       </div>
                     </div>
 
-                    <div className="space-y-2 pt-4">
-                      <label className="text-sm text-gray-400 uppercase tracking-wider font-semibold">Project Type</label>
-                      <select className="w-full bg-dark-card border border-white/20 p-4 text-white focus:outline-none focus:border-gold transition-colors appearance-none">
+                    <div className="space-y-1 pt-2">
+                      <label className="text-xs text-gray-400 uppercase tracking-wider font-semibold">Project Type</label>
+                      <select className="w-full bg-dark-card border border-white/20 p-3 text-sm text-white focus:outline-none focus:border-gold transition-colors appearance-none">
                         <option>Select a category...</option>
                         <option>Residential Construction</option>
                         <option>Commercial Development</option>
@@ -135,16 +135,16 @@ export default function ContactPage() {
                       </select>
                     </div>
 
-                    <div className="space-y-2 pt-4">
-                      <label className="text-sm text-gray-400 uppercase tracking-wider font-semibold">Project Details *</label>
-                      <textarea rows={5} placeholder="Tell us about the scope, timeline, and location..." className="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-gold transition-colors resize-none"></textarea>
+                    <div className="space-y-1 pt-2">
+                      <label className="text-xs text-gray-400 uppercase tracking-wider font-semibold">Project Details *</label>
+                      <textarea rows={4} placeholder="Tell us about the scope, timeline, and location..." className="w-full bg-transparent border-b border-white/20 py-2 text-white text-sm focus:outline-none focus:border-gold transition-colors resize-none"></textarea>
                     </div>
 
-                    <div className="pt-8">
-                      <button type="button" className="bg-gold text-dark-bg px-10 py-5 font-bold uppercase tracking-wider hover:bg-gold-light hover:shadow-[0_10px_40px_rgba(212,175,55,0.3)] transition-all flex items-center gap-3 w-full md:w-auto justify-center group">
-                        Submit Inquiry <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <div className="pt-4">
+                      <button type="button" className="bg-gold text-dark-bg px-8 py-4 font-bold uppercase tracking-wider hover:bg-gold-light hover:shadow-[0_10px_40px_rgba(212,175,55,0.3)] transition-all flex items-center gap-3 w-full md:w-auto justify-center group text-sm">
+                        Submit Inquiry <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                       </button>
-                      <p className="text-xs text-gray-500 mt-4">
+                      <p className="text-[10px] text-gray-500 mt-3">
                         By submitting this form, you agree to our privacy policy and consent to being contacted regarding your inquiry.
                       </p>
                     </div>

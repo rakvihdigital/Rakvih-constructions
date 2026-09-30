@@ -15,7 +15,7 @@ export default function AboutPage() {
             <div className="absolute inset-0 bg-dark-bg/80 z-10" />
             <div className="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent z-10" />
             <Image 
-              src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2000&auto=format&fit=crop" 
+              src="/images/hero.jpg" 
               alt="About Rakvih Construction" 
               fill 
               className="object-cover object-center grayscale opacity-50"
@@ -39,7 +39,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <FadeIn direction="right">
                 <div className="group relative h-[450px] overflow-hidden rounded-sm shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer">
-                  <Image src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1000&auto=format&fit=crop" alt="Our Mission" fill className="object-cover group-hover:scale-110 transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]" />
+                  <Image src="/images/residential.jpg" alt="Our Mission" fill className="object-cover group-hover:scale-110 transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]" />
                   <div className="absolute inset-0 bg-gradient-to-t from-dark-bg via-dark-bg/60 to-dark-bg/10 opacity-90 group-hover:opacity-95 transition-opacity duration-500" />
                   
                   {/* Decorative Border */}
@@ -56,7 +56,7 @@ export default function AboutPage() {
 
               <FadeIn direction="left" delay={200}>
                 <div className="group relative h-[450px] overflow-hidden rounded-sm shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer">
-                  <Image src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop" alt="Our Vision" fill className="object-cover group-hover:scale-110 transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]" />
+                  <Image src="/images/commercial.jpg" alt="Our Vision" fill className="object-cover group-hover:scale-110 transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]" />
                   <div className="absolute inset-0 bg-gradient-to-t from-dark-bg via-dark-bg/60 to-dark-bg/10 opacity-90 group-hover:opacity-95 transition-opacity duration-500" />
                   
                   {/* Decorative Border */}
@@ -134,9 +134,9 @@ export default function AboutPage() {
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               {[
-                { name: "Arjun Rakvih", role: "Founder & CEO", exp: "20+ Years Experience", img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600&auto=format&fit=crop" },
-                { name: "Sarah Jenkins", role: "Chief Operating Officer", exp: "15+ Years Experience", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop" },
-                { name: "Vikram Mehta", role: "Head of Engineering", exp: "18+ Years Experience", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=600&auto=format&fit=crop" }
+                { name: "Arjun Rakvih", role: "Founder & CEO", exp: "20+ Years Experience", img: "/images/team.jpg" },
+                { name: "Sarah Jenkins", role: "Chief Operating Officer", exp: "15+ Years Experience", img: "/images/team.jpg" },
+                { name: "Vikram Mehta", role: "Head of Engineering", exp: "18+ Years Experience", img: "/images/team.jpg" }
               ].map((leader, idx) => (
                 <FadeIn key={idx} direction="up" delay={idx * 100}>
                   <div className="group relative overflow-hidden bg-white shadow-lg hover:shadow-2xl transition-all duration-500 h-[500px] cursor-pointer rounded-sm">

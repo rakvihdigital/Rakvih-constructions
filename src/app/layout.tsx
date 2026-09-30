@@ -10,8 +10,6 @@ export const metadata: Metadata = {
   description: "Premium construction, engineering, and development services.",
 };
 
-import PremiumLoader from "@/components/PremiumLoader";
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -21,7 +19,6 @@ export default function RootLayout({
     <html lang="en" className="dark scroll-smooth">
       <body className={`${inter.className} antialiased bg-dark-bg text-white`}>
         <ScrollAnimation />
-        <PremiumLoader />
         {children}
       </body>
     </html>

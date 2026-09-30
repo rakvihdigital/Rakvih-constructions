@@ -9,37 +9,37 @@ export default function ServicesPage() {
     {
       title: "Residential Construction",
       desc: "We build ultra-luxury villas, contemporary high-rise apartments, and sprawling estates. Our residential team ensures every home is crafted with meticulous attention to detail, premium materials, and unparalleled structural integrity.",
-      img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200&auto=format&fit=crop",
+      img: "/images/residential.jpg",
       features: ["Custom Home Building", "High-Rise Apartments", "Luxury Villas", "Turnkey Solutions"]
     },
     {
       title: "Commercial Construction",
       desc: "Delivering state-of-the-art corporate offices, retail spaces, and mixed-use developments that reflect your brand's prestige. We focus on creating spaces that maximize productivity, sustainability, and aesthetic appeal.",
-      img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop",
+      img: "/images/sustainable.jpg",
       features: ["Corporate Headquarters", "Retail Complexes", "Mixed-Use Developments", "Boutique Hotels"]
     },
     {
       title: "Industrial Construction",
       desc: "Robust, efficient, and technologically advanced industrial facilities. From massive warehouses to specialized manufacturing plants, our engineering expertise ensures highly functional and safe environments.",
-      img: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?q=80&w=1200&auto=format&fit=crop",
+      img: "/images/industrial.jpg",
       features: ["Manufacturing Plants", "Warehouses & Logistics", "Data Centers", "Cold Storage Facilities"]
     },
     {
       title: "Infrastructure Development",
       desc: "Building the framework of tomorrow. Our team engineers highly complex infrastructure projects including bridges, highways, and public transit systems, prioritizing longevity, safety, and minimal environmental impact.",
-      img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1200&auto=format&fit=crop",
+      img: "/images/team.jpg",
       features: ["Bridges & Highways", "Public Transit Systems", "Urban Planning", "Civic Centers"]
     },
     {
       title: "Sustainable Architecture",
       desc: "Leading the transition to green building. We integrate renewable energy solutions, eco-friendly materials, and smart technologies to construct zero-emission buildings that harmonize with their natural surroundings.",
-      img: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=1200&auto=format&fit=crop",
+      img: "/images/process.jpg",
       features: ["LEED Certified Buildings", "Renewable Energy Integration", "Eco-Friendly Materials", "Smart Climate Control"]
     },
     {
       title: "Heritage Restoration",
       desc: "Preserving history while adapting for the future. Our restoration experts meticulously revive historic structures, utilizing specialized conservation techniques to protect their legacy while seamlessly upgrading internal systems.",
-      img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop",
+      img: "/images/details.jpg",
       features: ["Historical Conservation", "Structural Reinforcement", "Facade Restoration", "Modern Systems Retrofit"]
     }
   ];
@@ -54,7 +54,7 @@ export default function ServicesPage() {
             <div className="absolute inset-0 bg-dark-bg/80 z-10" />
             <div className="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent z-10" />
             <Image 
-              src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2000&auto=format&fit=crop" 
+              src="/images/process.jpg" 
               alt="Services Overview" 
               fill 
               className="object-cover object-center grayscale opacity-50"

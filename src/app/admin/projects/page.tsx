@@ -3,10 +3,10 @@ import Image from 'next/image';
 
 export default function AdminProjects() {
   const projects = [
-    { id: 1, title: "Skyline Tower", category: "Commercial", location: "Mumbai", status: "Active", img: "https://images.unsplash.com/photo-1541888086425-d81bb19240f5?q=80&w=400&auto=format&fit=crop" },
-    { id: 2, title: "Lotus Villas", category: "Residential", location: "Pune", status: "Active", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=400&auto=format&fit=crop" },
-    { id: 3, title: "Tech Park Phase II", category: "Infrastructure", location: "Bangalore", status: "Completed", img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=400&auto=format&fit=crop" },
-    { id: 4, title: "Green Energy Plant", category: "Industrial", location: "Gujarat", status: "Draft", img: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?q=80&w=400&auto=format&fit=crop" },
+    { id: 1, title: "Skyline Tower", category: "Commercial", location: "Mumbai", status: "Active", img: "/images/commercial.jpg" },
+    { id: 2, title: "Lotus Villas", category: "Residential", location: "Pune", status: "Active", img: "/images/residential.jpg" },
+    { id: 3, title: "Tech Park Phase II", category: "Infrastructure", location: "Bangalore", status: "Completed", img: "/images/process.jpg" },
+    { id: 4, title: "Green Energy Plant", category: "Industrial", location: "Gujarat", status: "Draft", img: "/images/industrial.jpg" },
   ];
 
   return (

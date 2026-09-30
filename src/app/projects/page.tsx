@@ -2,43 +2,48 @@ import Header from '@/components/Header';
 import FadeIn from '@/components/FadeIn';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
+import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
 export default function ProjectsPage() {
   const projects = [
     {
       title: "The Celestia Residences",
+      slug: "the-celestia-residences",
       location: "Mumbai, India",
       category: "Luxury Residential",
       status: "Completed 2025",
-      img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1200&auto=format&fit=crop",
+      img: "/images/residential.jpg",
       colSpan: "col-span-1 md:col-span-2",
       height: "h-[500px]"
     },
     {
       title: "Vertex Business Park",
+      slug: "vertex-business-park",
       location: "Bengaluru, India",
       category: "Commercial Office",
       status: "Completed 2024",
-      img: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop",
+      img: "/images/commercial.jpg",
       colSpan: "col-span-1",
       height: "h-[500px]"
     },
     {
       title: "Apex Manufacturing Unit",
+      slug: "apex-manufacturing-unit",
       location: "Pune, India",
       category: "Industrial Facility",
       status: "Completed 2023",
-      img: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?q=80&w=800&auto=format&fit=crop",
+      img: "/images/industrial.jpg",
       colSpan: "col-span-1",
       height: "h-[400px]"
     },
     {
       title: "Riverside Elevated Corridor",
+      slug: "riverside-elevated-corridor",
       location: "Ahmedabad, India",
       category: "Infrastructure",
       status: "Completed 2024",
-      img: "https://images.unsplash.com/photo-1545459720-aac8509eb02c?q=80&w=1200&auto=format&fit=crop",
+      img: "/images/hero.jpg",
       colSpan: "col-span-1 md:col-span-2",
       height: "h-[400px]"
     }
@@ -54,7 +59,7 @@ export default function ProjectsPage() {
             <div className="absolute inset-0 bg-dark-bg/80 z-10" />
             <div className="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent z-10" />
             <Image 
-              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop" 
+              src="/images/hero.jpg" 
               alt="Projects Overview" 
               fill 
               className="object-cover object-center grayscale opacity-50"
@@ -122,12 +127,12 @@ export default function ProjectsPage() {
                           <p>{proj.status}</p>
                         </div>
                         
-                        <button className={`group/btn flex items-center gap-4 uppercase tracking-widest text-sm font-semibold hover:text-gold transition-colors ${isLight ? 'text-dark-bg' : 'text-white'}`}>
+                        <Link href={`/projects/${proj.slug}`} className={`inline-flex group/btn items-center gap-4 uppercase tracking-widest text-sm font-semibold hover:text-gold transition-colors ${isLight ? 'text-dark-bg' : 'text-white'}`}>
                           Explore Project 
                           <div className={`w-10 h-10 rounded-full border flex items-center justify-center group-hover/btn:border-gold group-hover/btn:bg-gold/10 transition-all ${isLight ? 'border-dark-bg/20' : 'border-white/20'}`}>
                             <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                           </div>
-                        </button>
+                        </Link>
                       </div>
                     </div>
                   </FadeIn>

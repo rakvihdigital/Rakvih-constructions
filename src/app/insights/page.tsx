@@ -9,7 +9,7 @@ export default function InsightsPage() {
     cat: "Technology",
     title: "BIM Integration: Building the Future Virtually Before Breaking Ground",
     date: "August 12, 2026",
-    img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1200&auto=format&fit=crop",
+    img: "/images/process.jpg",
     excerpt: "How Building Information Modeling is drastically reducing errors and streamlining complex MEP coordination across our projects."
   };
 
@@ -18,35 +18,35 @@ export default function InsightsPage() {
       cat: "Sustainability",
       title: "Carbon-Neutral Concrete: The Next Big Leap in Green Construction",
       date: "July 28, 2026",
-      img: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop",
+      img: "/images/sustainable.jpg",
       excerpt: "Exploring alternative materials and supply chain adjustments required to achieve zero-emission concrete pours."
     },
     {
       cat: "Design Trends",
       title: "Biophilic Design in Commercial Real Estate",
       date: "June 05, 2026",
-      img: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=800&auto=format&fit=crop",
+      img: "/images/commercial.jpg",
       excerpt: "Why bringing nature indoors is no longer just an aesthetic choice, but a requirement for modern corporate spaces."
     },
     {
       cat: "Safety",
       title: "AI-Powered Safety Monitoring on High-Rise Projects",
       date: "May 19, 2026",
-      img: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=800&auto=format&fit=crop",
+      img: "/images/details.jpg",
       excerpt: "Implementing computer vision to automatically detect PPE compliance and hazardous zones."
     },
     {
       cat: "Market Update",
       title: "Navigating Supply Chain Volatility in 2026",
       date: "April 02, 2026",
-      img: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?q=80&w=800&auto=format&fit=crop",
+      img: "/images/industrial.jpg",
       excerpt: "Strategies for mitigating risk and ensuring project timelines remain unaffected by global material shortages."
     },
     {
       cat: "Company News",
       title: "Rakvih Construction Wins Excellence in Infrastructure Award",
       date: "March 15, 2026",
-      img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=800&auto=format&fit=crop",
+      img: "/images/hero.jpg",
       excerpt: "Recognition for our work on the Riverside Elevated Corridor and our commitment to public safety."
     }
   ];
@@ -61,7 +61,7 @@ export default function InsightsPage() {
             <div className="absolute inset-0 bg-dark-bg/80 z-10" />
             <div className="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent z-10" />
             <Image
-              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop"
+              src="/images/hero.jpg"
               alt="Industry Insights"
               fill
               className="object-cover object-center grayscale opacity-50"

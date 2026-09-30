@@ -206,12 +206,12 @@ export default function HomePage() {
               <FadeIn direction="up" delay={200}>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {[
-                      { title: "Residential Construction", desc: "Ultra-premium bespoke homes designed for modern luxury and timeless elegance.", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop" },
-                      { title: "Commercial Construction", desc: "State-of-the-art office spaces, retail environments, and corporate headquarters.", img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop" },
-                      { title: "Industrial Construction", desc: "High-capacity, technologically advanced facilities built for scale and efficiency.", img: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?q=80&w=800&auto=format&fit=crop" },
-                      { title: "Infrastructure Projects", desc: "Large-scale public and private civic engineering projects that shape the future.", img: "https://images.unsplash.com/photo-1545459720-aac8509eb02c?q=80&w=800&auto=format&fit=crop" },
-                      { title: "Interior & Fit-Out", desc: "Exquisite interior finishing, bespoke detailing, and world-class spatial planning.", img: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=800&auto=format&fit=crop" },
-                      { title: "Project Management", desc: "End-to-end oversight ensuring on-time, on-budget delivery without compromises.", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800&auto=format&fit=crop" },
+                      { title: "Residential Construction", desc: "Ultra-premium bespoke homes designed for modern luxury and timeless elegance.", img: "/images/residential.jpg" },
+                      { title: "Commercial Construction", desc: "State-of-the-art office spaces, retail environments, and corporate headquarters.", img: "/images/commercial.jpg" },
+                      { title: "Industrial Construction", desc: "High-capacity, technologically advanced facilities built for scale and efficiency.", img: "/images/industrial.jpg" },
+                      { title: "Infrastructure Projects", desc: "Large-scale public and private civic engineering projects that shape the future.", img: "/images/hero.jpg" },
+                      { title: "Interior & Fit-Out", desc: "Exquisite interior finishing, bespoke detailing, and world-class spatial planning.", img: "/images/interior.jpg" },
+                      { title: "Project Management", desc: "End-to-end oversight ensuring on-time, on-budget delivery without compromises.", img: "/images/details.jpg" },
                     ].map((service, idx) => (
                       <div key={idx} className="group relative h-[420px] overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500">
                         <Image src={service.img} alt={service.title} fill className="object-cover group-hover:scale-110 transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]" />
@@ -251,7 +251,7 @@ export default function HomePage() {
                       From modern residences to large-scale infrastructure, our projects reflect our commitment to quality, innovation and long-term value.
                     </p>
                   </div>
-                  <Link href="#portfolio" className="mt-8 md:mt-0 bg-gold text-dark-bg px-8 py-4 whitespace-nowrap font-semibold hover:bg-gold-light transition-all text-sm uppercase tracking-wider flex items-center gap-2">
+                  <Link href="/projects" className="mt-8 md:mt-0 bg-gold text-dark-bg px-8 py-4 whitespace-nowrap font-semibold hover:bg-gold-light transition-all text-sm uppercase tracking-wider flex items-center gap-2">
                     VIEW ALL PROJECTS
                     <ArrowRight className="w-4 h-4" />
                   </Link>
@@ -261,9 +261,9 @@ export default function HomePage() {
               <FadeIn direction="up" delay={200}>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   {[
-                    { title: "The Celestia Residences", cat: "Luxury Residential | Mumbai", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800&auto=format&fit=crop" },
-                    { title: "Vertex Business Park", cat: "Commercial | Bengaluru", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop" },
-                    { title: "Riverside Elevated Corridor", cat: "Infrastructure | Ahmedabad", img: "https://images.unsplash.com/photo-1545459720-aac8509eb02c?q=80&w=800&auto=format&fit=crop" },
+                    { title: "The Celestia Residences", cat: "Luxury Residential | Mumbai", img: "/images/residential.jpg" },
+                    { title: "Vertex Business Park", cat: "Commercial | Bengaluru", img: "/images/commercial.jpg" },
+                    { title: "Riverside Elevated Corridor", cat: "Infrastructure | Ahmedabad", img: "/images/hero.jpg" },
                   ].map((proj, idx) => (
                     <div key={idx} className="group relative h-[500px] overflow-hidden cursor-pointer">
                       <div className="absolute inset-0 bg-gradient-to-t from-dark-bg via-dark-bg/20 to-transparent z-10" />
@@ -294,7 +294,7 @@ export default function HomePage() {
                     <span className="font-bold">Path to Excellence</span>
                   </h2>
                 </div>
-                <Link href="#process" className="text-gold font-semibold text-sm flex items-center gap-2 hover:gap-3 transition-all uppercase tracking-wider hidden md:flex">
+                <Link href="/process" className="text-gold font-semibold text-sm flex items-center gap-2 hover:gap-3 transition-all uppercase tracking-wider hidden md:flex">
                   LEARN MORE
                   <ArrowRight className="w-4 h-4" />
                 </Link>
@@ -304,12 +304,12 @@ export default function HomePage() {
               <FadeIn direction="up" delay={200}>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
                 {[
-                  { num: "01", title: "Discover", desc: "Understand your vision and requirements", img: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=500&auto=format&fit=crop" },
-                  { num: "02", title: "Plan", desc: "Detailed planning and feasibility", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=500&auto=format&fit=crop" },
-                  { num: "03", title: "Coordinate", desc: "Integrated design and technical coordination", img: "https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=500&auto=format&fit=crop" },
-                  { num: "04", title: "Build", desc: "Precision execution with quality control", img: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?q=80&w=500&auto=format&fit=crop" },
-                  { num: "05", title: "Inspect", desc: "Rigorous inspection and safety management", img: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=500&auto=format&fit=crop" },
-                  { num: "06", title: "Handover", desc: "Timely delivery and ongoing support", img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=500&auto=format&fit=crop" },
+                  { num: "01", title: "Discover", desc: "Understand your vision and requirements", img: "/images/hero.jpg" },
+                  { num: "02", title: "Plan", desc: "Detailed planning and feasibility", img: "/images/details.jpg" },
+                  { num: "03", title: "Coordinate", desc: "Integrated design and technical coordination", img: "/images/team.jpg" },
+                  { num: "04", title: "Build", desc: "Precision execution with quality control", img: "/images/industrial.jpg" },
+                  { num: "05", title: "Inspect", desc: "Rigorous inspection and safety management", img: "/images/interior.jpg" },
+                  { num: "06", title: "Handover", desc: "Timely delivery and ongoing support", img: "/images/process.jpg" },
                 ].map((step, idx) => (
                   <div key={idx} className="relative group flex flex-col">
                     <div className="h-48 relative mb-6 overflow-hidden rounded-sm shadow-md group-hover:shadow-2xl transition-all duration-500">
@@ -338,7 +338,7 @@ export default function HomePage() {
             <div className="absolute inset-0">
               <div className="absolute inset-0 bg-dark-card/90 z-10" />
               <Image
-                src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?q=80&w=2000&auto=format&fit=crop"
+                src="/images/process.jpg"
                 alt="Sustainable building"
                 fill
                 className="object-cover"
@@ -357,7 +357,7 @@ export default function HomePage() {
                   <p className="text-gray-300 text-lg mb-8 max-w-xl">
                     We integrate safety, quality and sustainability in every project to create lasting value for people and the planet.
                   </p>
-                  <Link href="#sustainability" className="bg-gold text-dark-bg px-6 py-3 inline-flex items-center gap-2 font-semibold hover:bg-gold-light transition-colors text-sm uppercase tracking-wider">
+                  <Link href="/about" className="bg-gold text-dark-bg px-6 py-3 inline-flex items-center gap-2 font-semibold hover:bg-gold-light transition-colors text-sm uppercase tracking-wider">
                     OUR COMMITMENT
                     <ArrowRight className="w-4 h-4" />
                   </Link>
@@ -414,7 +414,7 @@ export default function HomePage() {
 
                 <div className="flex items-center justify-center gap-4">
                   <div className="w-14 h-14 rounded-full bg-gray-200 overflow-hidden relative">
-                    <Image src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&auto=format&fit=crop" alt="Client" fill className="object-cover" />
+                    <Image src="/images/sustainable.jpg" alt="Client" fill className="object-cover" />
                   </div>
                   <div>
                     <h4 className="font-bold text-lg">Rahul Mehta</h4>
@@ -448,9 +448,9 @@ export default function HomePage() {
               <FadeIn direction="up" delay={200}>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {[
-                  { title: "Key Trends in Modern Construction in 2025", date: "June 15, 2025", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800&auto=format&fit=crop" },
-                  { title: "How Sustainable Construction Creates Long-Term Value", date: "May 28, 2025", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop" },
-                  { title: "Choosing the Right Materials for Modern Homes", date: "May 10, 2025", img: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=800&auto=format&fit=crop" }
+                  { title: "Key Trends in Modern Construction in 2025", date: "June 15, 2025", img: "/images/hero.jpg" },
+                  { title: "How Sustainable Construction Creates Long-Term Value", date: "May 28, 2025", img: "/images/sustainable.jpg" },
+                  { title: "Choosing the Right Materials for Modern Homes", date: "May 10, 2025", img: "/images/commercial.jpg" }
                 ].map((article, idx) => (
                   <div key={idx} className="bg-dark-card border border-white/10 group cursor-pointer hover:border-gold/30 hover:shadow-2xl transition-all flex flex-col">
                     <div className="relative h-48 overflow-hidden">
@@ -473,7 +473,7 @@ export default function HomePage() {
           {/* CTA Section (Contact) */}
           <section id="contact" className="py-16 md:py-20 bg-white relative overflow-hidden">
             <div className="absolute inset-0 z-0 opacity-[0.03] grayscale">
-              <Image src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop" alt="Background" fill className="object-cover" />
+              <Image src="/images/industrial.jpg" alt="Background" fill className="object-cover" />
             </div>
             <div className="container mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8 bg-gray-50 border border-gray-100 shadow-2xl p-12 md:p-16">
               <FadeIn direction="left" className="flex-1">

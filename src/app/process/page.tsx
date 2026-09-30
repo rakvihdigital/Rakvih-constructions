@@ -27,7 +27,7 @@ export default function ProcessPage() {
             <div className="absolute inset-0 bg-dark-bg/80 z-10" />
             <div className="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent z-10" />
             <Image
-              src="https://images.unsplash.com/photo-1508450859948-4e04fabaa4ea?q=80&w=2000&auto=format&fit=crop"
+              src="/images/interior.jpg"
               alt="Process Methodology"
               fill
               className="object-cover object-center grayscale opacity-50"
@@ -54,15 +54,15 @@ export default function ProcessPage() {
             const isEven = idx % 2 === 0;
             // Chessboard: Row 0 = [Dark+Image | Light+Text], Row 1 = [Light+Text | Dark+Image], etc.
             const images = [
-              'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1000&auto=format&fit=crop',
-              'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop',
-              'https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=1000&auto=format&fit=crop',
-              'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop',
-              'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1000&auto=format&fit=crop',
-              'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1000&auto=format&fit=crop',
-              'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=1000&auto=format&fit=crop',
-              'https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1000&auto=format&fit=crop',
-              'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop',
+              '/images/process.jpg',
+              '/images/hero.jpg',
+              '/images/commercial.jpg',
+              '/images/interior.jpg',
+              '/images/industrial.jpg',
+              '/images/team.jpg',
+              '/images/details.jpg',
+              '/images/sustainable.jpg',
+              '/images/residential.jpg',
             ];
 
             const imageBlock = (
