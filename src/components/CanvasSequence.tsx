@@ -1,6 +1,8 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useLayoutEffect } from 'react'
+
+const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
 const SEQ0_FRAMES = 239
 const SEQ1_FRAMES = 299
@@ -38,6 +40,19 @@ export default function CanvasSequence() {
   const currentFrameRef = useRef(1)
   const targetFrameRef = useRef(1)
   const isScrolledRef = useRef(false)
+
+  const [hasVisited, setHasVisited] = useState(false)
+
+  useIsomorphicLayoutEffect(() => {
+    const visited = sessionStorage.getItem('rakvih-loaded')
+    if (visited) {
+      setHasVisited(true)
+      setShowLoader(false)
+      setProgress(100)
+    } else {
+      sessionStorage.setItem('rakvih-loaded', 'true')
+    }
+  }, [])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -92,6 +107,8 @@ export default function CanvasSequence() {
     }
 
     function preloadImages() {
+      // If we already visited, we can optionally skip the full preload blocking the loader
+      // But we still need the images to load for the scroll sequence
       for (let i = 1; i <= TOTAL_FRAMES; i++) {
         const img = new Image()
         img.src = getFramePath(i)
@@ -99,7 +116,7 @@ export default function CanvasSequence() {
         const handleLoad = () => {
           loadedCount++
           const p = (loadedCount / TOTAL_FRAMES) * 100
-          setProgress(p)
+          if (!hasVisited) setProgress(p)
 
           if (i === 1) {
             setIsLoaded(true)
@@ -107,9 +124,11 @@ export default function CanvasSequence() {
           }
 
           if (loadedCount === TOTAL_FRAMES) {
-            setTimeout(() => {
-              setShowLoader(false)
-            }, 300)
+            if (!hasVisited) {
+              setTimeout(() => {
+                setShowLoader(false)
+              }, 300)
+            }
           }
         }
 
@@ -182,7 +201,7 @@ export default function CanvasSequence() {
 
     const safetyTimeout = setTimeout(() => {
       setIsLoaded(true)
-      setShowLoader(false)
+      if (!hasVisited) setShowLoader(false)
     }, 15000)
 
     return () => {
@@ -190,15 +209,15 @@ export default function CanvasSequence() {
       cancelAnimationFrame(animationId)
       clearTimeout(safetyTimeout)
     }
-  }, [])
+  }, [hasVisited])
 
   return (
     <>
-      <div id="premium-loader" className={`fixed inset-0 z-[100] flex items-center justify-center overflow-hidden transition-all duration-[1.5s] ease-[cubic-bezier(0.76,0,0.24,1)] ${!showLoader ? 'opacity-0 pointer-events-none scale-[1.05]' : 'opacity-100 scale-100'}`}>
+      <div id="premium-loader" suppressHydrationWarning className={`fixed inset-0 z-[100] flex items-center justify-center overflow-hidden ${hasVisited ? 'hidden opacity-0 pointer-events-none' : `transition-all duration-[1.5s] ease-[cubic-bezier(0.76,0,0.24,1)] ${!showLoader ? 'opacity-0 pointer-events-none scale-[1.05]' : 'opacity-100 scale-100'}`}`}>
         {/* Top curtain half */}
-        <div className={`absolute top-0 left-0 right-0 bg-dark-bg transition-all duration-[1.2s] ease-[cubic-bezier(0.76,0,0.24,1)] z-20 ${!showLoader ? 'h-0' : 'h-1/2'}`} />
+        <div className={`absolute top-0 left-0 right-0 bg-dark-bg transition-all duration-[1.2s] ease-[cubic-bezier(0.76,0,0.24,1)] z-20 ${(!showLoader || hasVisited) ? 'h-0' : 'h-1/2'}`} />
         {/* Bottom curtain half */}
-        <div className={`absolute bottom-0 left-0 right-0 bg-dark-bg transition-all duration-[1.2s] ease-[cubic-bezier(0.76,0,0.24,1)] z-20 ${!showLoader ? 'h-0' : 'h-1/2'}`} />
+        <div className={`absolute bottom-0 left-0 right-0 bg-dark-bg transition-all duration-[1.2s] ease-[cubic-bezier(0.76,0,0.24,1)] z-20 ${(!showLoader || hasVisited) ? 'h-0' : 'h-1/2'}`} />
         
         {/* Content layer */}
         <div className="relative z-30 flex flex-col items-center w-full px-8">
