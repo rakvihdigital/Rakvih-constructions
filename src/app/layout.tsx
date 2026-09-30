@@ -16,6 +16,9 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "Rakvih Construction | Spaces Beyond Expectations",
   description: "Premium construction, engineering, and development services.",
+  icons: {
+    icon: '/icon.png',
+  },
 };
 
 export default function RootLayout({
