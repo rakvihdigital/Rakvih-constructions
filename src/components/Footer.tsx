@@ -143,7 +143,7 @@ export default function Footer() {
             </Link>
           </div>
           <p>
-            Designed by{' '}
+            Designed and Powered by{' '}
             <a
               href="https://rakvih.in/"
               target="_blank"
