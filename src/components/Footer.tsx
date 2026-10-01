@@ -39,8 +39,16 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
           {/* Brand */}
           <div className="lg:col-span-4 lg:pr-10">
-            <Link href="/" className="block mb-6">
-              <Image src="/logo-transparent.png" alt="Rakvih Construction home" width={160} height={50} className="object-contain" />
+            <Link href="/" className="inline-flex items-center gap-[10px] mb-8">
+              <Image src="/icon.png" alt="Rakvih Icon" width={46} height={46} className="object-contain" />
+              <div className="flex flex-col justify-center pt-1">
+                <span className="font-serif text-[34px] leading-none tracking-normal text-white">
+                  RAKVIH
+                </span>
+                <span className="font-sans text-[8.5px] leading-none tracking-[0.23em] font-medium text-white/90 mt-0.5 ml-0.5">
+                  CONSTRUCTIONS & DEVELOPERS
+                </span>
+              </div>
             </Link>
             <p className="text-neutral-400 font-light text-base leading-relaxed mb-8 max-w-sm">
               Building iconic spaces and stronger communities through innovation, integrity, and uncompromising excellence.

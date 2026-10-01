@@ -41,19 +41,6 @@ export default function CanvasSequence() {
   const targetFrameRef = useRef(1)
   const isScrolledRef = useRef(false)
 
-  const [hasVisited, setHasVisited] = useState(false)
-
-  useIsomorphicLayoutEffect(() => {
-    const visited = sessionStorage.getItem('rakvih-loaded')
-    if (visited) {
-      setHasVisited(true)
-      setShowLoader(false)
-      setProgress(100)
-    } else {
-      sessionStorage.setItem('rakvih-loaded', 'true')
-    }
-  }, [])
-
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -107,36 +94,57 @@ export default function CanvasSequence() {
     }
 
     function preloadImages() {
-      // If we already visited, we can optionally skip the full preload blocking the loader
-      // But we still need the images to load for the scroll sequence
-      for (let i = 1; i <= TOTAL_FRAMES; i++) {
-        const img = new Image()
-        img.src = getFramePath(i)
+      let currentLoadIndex = 1
+      const BATCH_SIZE = 40
+      const ESSENTIAL_FRAMES = Math.min(150, TOTAL_FRAMES)
+      let loaderHidden = false
 
-        const handleLoad = () => {
-          loadedCount++
-          const p = (loadedCount / TOTAL_FRAMES) * 100
-          if (!hasVisited) setProgress(p)
+      function loadNextBatch() {
+        if (currentLoadIndex > TOTAL_FRAMES) return
 
-          if (i === 1) {
-            setIsLoaded(true)
-            drawImageCover(imagesRef.current[1])
-          }
+        let loadedInBatch = 0
+        const endIndex = Math.min(currentLoadIndex + BATCH_SIZE - 1, TOTAL_FRAMES)
+        const batchCount = endIndex - currentLoadIndex + 1
 
-          if (loadedCount === TOTAL_FRAMES) {
-            if (!hasVisited) {
+        for (let i = currentLoadIndex; i <= endIndex; i++) {
+          const img = new Image()
+          img.src = getFramePath(i)
+
+          const handleLoad = () => {
+            loadedCount++
+            
+            // Progress bar is driven by the first ESSENTIAL_FRAMES to not block the user
+            const p = Math.min(100, (loadedCount / ESSENTIAL_FRAMES) * 100)
+            setProgress(p)
+
+            if (i === 1) {
+              setIsLoaded(true)
+              drawImageCover(imagesRef.current[1])
+            }
+
+            loadedInBatch++
+
+            if (loadedInBatch === batchCount) {
+              currentLoadIndex += BATCH_SIZE
+              loadNextBatch()
+            }
+
+            if (loadedCount >= ESSENTIAL_FRAMES && !loaderHidden) {
+              loaderHidden = true
               setTimeout(() => {
                 setShowLoader(false)
-              }, 300)
+              }, 400)
             }
           }
+
+          img.onload = handleLoad
+          img.onerror = handleLoad
+
+          imagesRef.current[i] = img
         }
-
-        img.onload = handleLoad
-        img.onerror = handleLoad
-
-        imagesRef.current[i] = img
       }
+
+      loadNextBatch()
     }
 
     function updateScrollState() {
@@ -201,7 +209,7 @@ export default function CanvasSequence() {
 
     const safetyTimeout = setTimeout(() => {
       setIsLoaded(true)
-      if (!hasVisited) setShowLoader(false)
+      setShowLoader(false)
     }, 15000)
 
     return () => {
@@ -209,60 +217,39 @@ export default function CanvasSequence() {
       cancelAnimationFrame(animationId)
       clearTimeout(safetyTimeout)
     }
-  }, [hasVisited])
+  }, [])
 
   return (
     <>
-      <div id="premium-loader" suppressHydrationWarning className={`fixed inset-0 z-[100] flex items-center justify-center overflow-hidden ${hasVisited ? 'hidden opacity-0 pointer-events-none' : `transition-all duration-[1.5s] ease-[cubic-bezier(0.76,0,0.24,1)] ${!showLoader ? 'opacity-0 pointer-events-none scale-[1.05]' : 'opacity-100 scale-100'}`}`}>
+      <div id="premium-loader" suppressHydrationWarning className={`fixed inset-0 z-[100] flex items-center justify-center overflow-hidden transition-all duration-[1.5s] ease-[cubic-bezier(0.76,0,0.24,1)] ${!showLoader ? 'opacity-0 pointer-events-none scale-[1.05]' : 'opacity-100 scale-100'}`}>
         {/* Top curtain half */}
-        <div className={`absolute top-0 left-0 right-0 bg-dark-bg transition-all duration-[1.2s] ease-[cubic-bezier(0.76,0,0.24,1)] z-20 ${(!showLoader || hasVisited) ? 'h-0' : 'h-1/2'}`} />
+        <div className={`absolute top-0 left-0 right-0 bg-dark-bg transition-all duration-[1.2s] ease-[cubic-bezier(0.76,0,0.24,1)] z-20 ${!showLoader ? 'h-0' : 'h-1/2'}`} />
         {/* Bottom curtain half */}
-        <div className={`absolute bottom-0 left-0 right-0 bg-dark-bg transition-all duration-[1.2s] ease-[cubic-bezier(0.76,0,0.24,1)] z-20 ${(!showLoader || hasVisited) ? 'h-0' : 'h-1/2'}`} />
+        <div className={`absolute bottom-0 left-0 right-0 bg-dark-bg transition-all duration-[1.2s] ease-[cubic-bezier(0.76,0,0.24,1)] z-20 ${!showLoader ? 'h-0' : 'h-1/2'}`} />
         
         {/* Content layer */}
-        <div className="relative z-30 flex flex-col items-center w-full px-8">
-          {/* Logo at top */}
-          <div className="mb-8 animate-fade-in-up">
-            <img
-              src="/logo-transparent.png"
-              alt="Rakvih"
-              className="w-28 h-auto opacity-60"
-            />
-          </div>
-
-          {/* Massive counter */}
-          <div className="relative mb-6 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-            <span className="text-[120px] md:text-[180px] lg:text-[220px] font-extralight text-white/[0.08] leading-none tracking-tight tabular-nums select-none">
-              {String(Math.floor(progress)).padStart(3, '0')}
+        <div className="relative z-30 flex flex-col items-center justify-center w-full px-8 gap-10">
+          {/* Text Logo */}
+          <div className="flex flex-col items-center justify-center animate-fade-in-up">
+            <span className="font-serif text-[38px] leading-none tracking-normal text-white">
+              RAKVIH
             </span>
-            {/* Small gold percentage on top of big number */}
-            <div className="absolute bottom-4 right-0 flex items-baseline gap-1">
-              <span className="text-gold text-4xl md:text-5xl font-extralight tabular-nums">{Math.floor(progress)}</span>
-              <span className="text-gold/50 text-lg font-light">%</span>
+            <span className="font-sans text-[9px] leading-none tracking-[0.23em] font-medium text-white/90 mt-1 ml-0.5">
+              CONSTRUCTIONS & DEVELOPERS
+            </span>
+          </div>
+
+          {/* Simple thin progress line */}
+          <div className="w-full max-w-[200px] flex flex-col items-center gap-4 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+            <div className="w-full relative h-[2px] bg-white/10 rounded-full overflow-hidden">
+              <div 
+                className="absolute top-0 left-0 h-full bg-[#FFD400] transition-all duration-300 ease-out rounded-full"
+                style={{ width: `${progress}%` }}
+              />
             </div>
-          </div>
-
-          {/* Horizontal growing line */}
-          <div className="w-full max-w-md relative animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-            <div className="w-full h-px bg-white/[0.06]" />
-            <div 
-              className="absolute top-0 left-0 h-px bg-gold transition-all duration-300 ease-out"
-              style={{ width: `${progress}%` }}
-            />
-            {/* Glowing dot at end of line */}
-            <div 
-              className="absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-gold shadow-[0_0_15px_rgba(212,175,55,0.8)] transition-all duration-300"
-              style={{ left: `calc(${progress}% - 4px)` }}
-            />
-          </div>
-
-          {/* Bottom tagline */}
-          <div className="mt-8 flex items-center gap-6 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-            <span className="w-8 h-px bg-gold/30" />
-            <p className="text-white/30 text-[11px] tracking-[0.4em] uppercase font-light">
-              Spaces Beyond Expectations
-            </p>
-            <span className="w-8 h-px bg-gold/30" />
+            <span className="text-white/40 text-[10px] tracking-[0.2em] font-medium uppercase tabular-nums">
+              {Math.floor(progress)}%
+            </span>
           </div>
         </div>
       </div>

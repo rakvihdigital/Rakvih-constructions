@@ -80,29 +80,40 @@ export default function Header() {
         @media (prefers-reduced-motion: reduce) { .menu-in { animation: none; } }
       `}</style>
 
-      {/* Floating island header */}
-      <header className="fixed top-3 md:top-4 inset-x-0 z-40 px-3 md:px-6 pointer-events-none">
-        <div className="pointer-events-auto mx-auto max-w-6xl h-14 md:h-16 rounded-full border border-white/10 backdrop-blur-xl pl-5 md:pl-7 pr-2 md:pr-2.5 flex items-center justify-between gap-6 bg-black/85 shadow-[0_10px_40px_rgba(0,0,0,0.5)] transition-all duration-500">
-          <Link href="/" className="flex items-center shrink-0" aria-label="Rakvih Construction home">
-            <Image src="/logo-transparent.png" alt="Rakvih Construction" width={140} height={44} className="object-contain" priority />
+      {/* Full width sticky header */}
+      <header className="fixed top-0 inset-x-0 z-40 pointer-events-none">
+        <div className="pointer-events-auto w-full h-16 md:h-20 border-b border-white/10 backdrop-blur-md px-5 md:px-10 flex items-center justify-between gap-6 bg-black/85 shadow-sm transition-all duration-500">
+          <Link href="/" className="flex items-center shrink-0 gap-[10px]" aria-label="Rakvih Construction home">
+            <Image src="/icon.png" alt="Rakvih Icon" width={46} height={46} className="object-contain" priority />
+            <div className="flex flex-col justify-center pt-1">
+              <span className="font-serif text-[34px] leading-none tracking-normal text-white">
+                RAKVIH
+              </span>
+              <span className="font-sans text-[8.5px] leading-none tracking-[0.23em] font-medium text-white/90 mt-0.5 ml-0.5">
+                CONSTRUCTIONS & DEVELOPERS
+              </span>
+            </div>
           </Link>
 
-          {/* Desktop links with a solid gray background pill on hover / active */}
-          <nav className="hidden lg:flex items-center gap-1.5" aria-label="Main">
-            {navLinks.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                aria-current={isActive(l.href) ? 'page' : undefined}
-                className={`relative px-4 py-2 rounded-full text-[14px] transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFD400] ${
-                  isActive(l.href)
-                    ? 'bg-neutral-800 text-white shadow-sm'
-                    : 'text-neutral-400 hover:bg-neutral-800/60 hover:text-white'
-                }`}
-              >
-                {l.label}
-              </Link>
-            ))}
+          {/* Desktop links */}
+          <nav className="hidden lg:flex items-center gap-3 pr-4" aria-label="Main">
+            {navLinks.map((l) => {
+              const active = isActive(l.href);
+              return (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  aria-current={active ? 'page' : undefined}
+                  className={`relative px-4 py-1.5 rounded-full font-serif text-[16px] tracking-wide transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFD400] ${
+                    active
+                      ? 'bg-white/10 text-white font-medium'
+                      : 'text-white/60 hover:bg-white/5 hover:text-white'
+                  }`}
+                >
+                  {l.label}
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="flex items-center gap-1 md:gap-2">
@@ -111,7 +122,7 @@ export default function Header() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Chat on WhatsApp"
-              className="w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center text-neutral-300 hover:bg-white/10 hover:text-[#25D366] transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#25D366]"
+              className="w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center text-white/60 hover:bg-white/10 hover:text-[#25D366] transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#25D366]"
             >
               <FaWhatsapp className="w-[18px] h-[18px]" />
             </a>
@@ -119,14 +130,14 @@ export default function Header() {
             <button
               onClick={() => setSearchOpen(true)}
               aria-label="Open search (Ctrl or Command + K)"
-              className="w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center text-neutral-300 hover:bg-white/10 hover:text-[#FFD400] transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#FFD400]"
+              className="w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center text-white/60 hover:bg-white/10 hover:text-[#FFD400] transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#FFD400]"
             >
               <Search className="w-[18px] h-[18px]" />
             </button>
 
             <Link
               href="/contact"
-              className="hidden lg:inline-flex items-center gap-2 h-11 px-6 rounded-full bg-[#FFD400] text-black text-[15px] font-semibold hover:bg-white transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="hidden lg:inline-flex items-center gap-2 h-10 px-6 rounded-full bg-[#FFD400] text-black text-[14px] font-semibold hover:bg-white transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               Start a project
               <ArrowRight className="w-4 h-4" />
